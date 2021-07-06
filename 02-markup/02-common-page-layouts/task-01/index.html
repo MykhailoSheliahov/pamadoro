@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+        integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<body>
+    <header id="header" class="sticky">
+        <a href="#">
+            <img id="logo" src="./images/logo.svg" alt="logo">
+        </a>
+        <a class="btn-sign-in" href="#">Sign-in</a>
+        <nav class="header-nav">
+            <ul class="header-menu">
+                <li>
+                    <a href="#mission">Services</a>
+                </li>
+                <li>
+                    <a href="#about">About</a>
+                </li>
+                <li>
+                    <a href="#newsletter">Contacts us</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section id="mission">
+        <h2 class="heading heading_text_white">Our mission</h2>
+        <p class="data_text_white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+            Ipsum has been the
+            industry's standard dummy text ever since the 1500.
+        </p>
+    </section>
+    <section id="about">
+        <h2 class="heading heading_text_blue">About</h2>
+        <p class="data_text_grey">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown.
+        </p>
+    </section>
+    <section id="team">
+        <h2 class="heading heading_text_white">Team</h2>
+        <div class="team-items">
+            <div class="team-items__item">
+                <picture>
+                    <source media="(min-width: 320px) and (max-width: 767px)" srcset="./images/avatar-1.png">
+                    <source media="(min-width: 768px) and (max-width: 1023px)" srcset="./images/avatar-1_x2.png">
+                    <img class="rounded" src="./images/avatar-1.png" alt="avatar-1">
+                </picture>
+                <p>John Doe</p>
+                <span>
+                    Founder &#38; <span class="position-title">CEO</span>
+                </span>
+            </div>
+            <div class="team-items__item">
+                <picture>
+                    <source media="(min-width: 320px) and (max-width: 767px)" srcset="./images/avatar-2.png">
+                    <source media="(min-width: 768px) and (max-width: 1023px)" srcset="./images/avatar-2_x2.png">
+                    <img class="rounded" src="./images/avatar-2.png" alt="avatar-2">
+                </picture>
+                <p>John Doe</p>
+                <span>Co-Founder</span>
+            </div>
+            <div class="team-items__item">
+                <picture>
+                    <source media="(min-width: 320px) and (max-width: 767px)" srcset="./images/avatar-3.png">
+                    <source media="(min-width: 768px) and (max-width: 1023px)" srcset="./images/avatar-3_x2.png">
+                    <img class="rounded" src="./images/avatar-3.png" alt="avatar-3">
+                </picture>
+                <p>John Doe</p>
+                <span>Investor</span>
+            </div>
+        </div>
+        <a class="btn-work" href="#">Work with us</a>
+    </section>
+    <section id="newsletter">
+        <h2 class="heading heading_text_blue">Newsletter</h2>
+        <p class="data_text_grey">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown.</p>
+        <form action="#" method="post">
+            <div class="send-email">
+                <input class="email" type="email" name="email" placeholder="Enter email">
+                <button type="submit" class="btn-email">
+                    <i class="fas fa-envelope"></i>
+                </button>
+            </div>
+        </form>
+    </section>
+    <footer id="footer">
+        <div class="footer-info">
+            <nav >
+                <ul class="footer-info__menu">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="#">Work with us</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="footer-info__social">
+                <a href="#">
+                    <i class="fas fa-envelope b-envelope"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+        <nav class="footer-nav">
+            <ul class="footer-info__additonal-data">
+                <li>
+                    <a href="#">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#">Terms and Conditions</a>
+                </li>
+                <li>
+                    <a href="#">&copy; Company.LLC 2014</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>
