@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Productivity app</title>
+</head>
+
+<body>
+    <!-- start 1-2markup,  current view, add hidden  to hide-->
+    <header class="timer__header ">  
+        <ul class="menu">
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-list"></a>
+            </li>
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-statistics "></a>
+            </li>
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-settings"></a>
+            </li>
+        </ul>
+    </header>
+    <!-- continue 1-2markup,  current view, add hidden  to hide-->
+    <section class="timer  ">
+        <h3 class="timer__heading" >1. Creating a New Design</h3>
+        <p class="timer__p" >Lorem ipsum dolor sit amet consectetur adipiscing</p>
+        <div class="timer__pomodoro">
+            <div class="timer-pomodoro__imgs">
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/empty-tomato.svg" alt="empty-tomato1" class="timer-pomodoro__img">
+                </a>
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/empty-tomato.svg" alt="empty-tomato2" class="timer-pomodoro__img">
+                </a>
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/empty-tomato.svg" alt="empty-tomato3" class="timer-pomodoro__img">
+                </a>
+            </div>
+            <span class="timer__icon-add icon-add"></span>
+        </div>
+        <div class="time">
+                <span data-title="Go to Global List"> 
+                    <a class="timer__icon-arrow-left icon-arrow-left"  >  </a>
+                </span>
+            <div class="time__wrapper">
+                <div class="time-circle">
+                    <div class="time-circle-inside__text">
+                        <span class="time-circle__text">Let’s do it!</span>
+                    </div>
+                </div>
+            </div>
+            <span class="timer__icon-arrow-right icon-arrow-right v-hidden"></span>
+        </div>
+        <div class=" timer__btns pomodoros__btns">
+            <a href="#" class="btn btn--secondary">Start</a> 
+        </div>
+    </section>
+    <!-- end 1-2 -->
+
+    <!-- start 3markup, delete hidden for header and section-->
+    <header class="timer__header  v-hidden hidden">  
+        <ul class="menu">
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-list"></a>
+            </li>
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-statistics "></a>
+            </li>
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-settings"></a>
+            </li>
+        </ul>
+    </header>
+    <!-- continue 3, delete hidden for section and header-->
+    <section class="timer hidden">
+        <h3 class="timer__heading" >1. Creating a New Design</h3>
+        <p class="timer__p" >Lorem ipsum dolor sit amet consectetur adipiscing</p>
+        <div class="timer__pomodoro">
+            <div class="timer-pomodoro__imgs">
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/empty-tomato.svg" alt="empty-tomato" class="timer-pomodoro__img">
+                </a>
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/empty-tomato.svg" alt="empty-tomato2" class="timer-pomodoro__img">
+                </a>
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/empty-tomato.svg" alt="empty-tomato3" class="timer-pomodoro__img">
+                </a>
+            </div>
+            <span class="timer__icon-add icon-add"></span>
+        </div>
+        <div class="time">
+                <span data-title="Go to Global List"> 
+                    <a class="timer__icon-arrow-left icon-arrow-left v-hidden"  >  </a>
+                </span>
+            <div class="time__wrapper">
+                <div class="time-circle">
+                    <div class="time-circle-inside">
+                        <div class="c" ></div>
+                    </div>
+                    <div class="time-circle-inside__text">
+                        <span class="time-circle__number">6</span>
+                        <span class="time-circle__min">min</span>
+                    </div>
+                </div>
+            </div>
+            <span class="timer__icon-arrow-right icon-arrow-right v-hidden"></span>
+        </div>
+        <div class=" timer__btns pomodoros__btns pomodoros__btns-2 ">
+            <a href="#" class="btn btn--third">Fail Pomodora</a> 
+            <a href="#" class="btn btn--secondary">Finish Pomodora</a> 
+        </div>
+    </section>
+    <!-- end 3 -->
+
+    <!-- start 4 delete hidden for section and header-->
+    <header class="timer__header v-hidden hidden">  
+        <ul class="menu">
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-list"></a>
+            </li>
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-statistics "></a>
+            </li>
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-settings"></a>
+            </li>
+        </ul>
+    </header>
+    <!-- continue 4, delete hidden for section and header-->
+    <section class="timer hidden">
+        <h3 class="timer__heading" >1. Creating a New Design</h3>
+        <p class="timer__p" >Lorem ipsum dolor sit amet consectetur adipiscing</p>
+        <div class="timer__pomodoro">
+            <div class="timer-pomodoro__imgs">
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/fill tomato.svg" alt="filled-tomato" class="timer-pomodoro__img">
+                </a>
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/fill tomato.svg" alt="filled-tomato" class="timer-pomodoro__img">
+                </a>
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/empty-tomato.svg" alt="empty-tomato" class="timer-pomodoro__img">
+                </a>
+            </div>
+            <span class="timer__icon-add icon-add"></span>
+        </div>
+        <div class="time">
+                <span data-title="Go to Global List"> 
+                    <a class="timer__icon-arrow-left icon-arrow-left v-hidden">  </a>
+                </span>
+            <div class="time__wrapper">
+                <div class="time-circle">
+                    <div class="time-circle-inside">
+                        <div class="c" style="transform: rotate(0deg) skew(0deg)"></div>
+                        <div class=" c c2" style="transform: rotate(90deg) skew(0deg)"></div>    
+                        <div class=" c c3" style="transform: rotate(180deg) skew(0deg)"></div>
+                        <div class="c c4" style="transform: rotate(270deg) skew(0deg)"></div>
+                    </div>
+                    <div class="time-circle-inside__text">
+                        <span class="time-circle__text">Break is</span>
+                        <span class="time-circle__text">over</span>
+                    </div>
+                </div>
+            </div>
+            <span class="timer__icon-arrow-right icon-arrow-right v-hidden"></span>
+        </div>
+        <div class=" timer__btns pomodoros__btns pomodoros__btns-2 pomodoros__btns-2-finish-st ">
+            <a href="#" class="btn btn--secondary">Start Pomodora</a> 
+            <a href="#" class="btn btn--primary">Finish Task</a> 
+        </div>
+    </section>
+    <!-- 4 end -->
+
+    <!-- start 5 delete hidden for section and header-->
+    <header class="timer__header  v-hidden hidden">  
+        <ul class="menu">
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-list"></a>
+            </li>
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-statistics "></a>
+            </li>
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-settings"></a>
+            </li>
+        </ul>
+    </header>
+    <!-- continue 5, delete hidden for section and header-->
+    <section class="timer hidden">
+        <h3 class="timer__heading" >1. Creating a New Design</h3>
+        <p class="timer__p" >Lorem ipsum dolor sit amet consectetur adipiscing</p>
+        <div class="timer__pomodoro">
+            <div class="timer-pomodoro__imgs">
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/fill tomato.svg" alt="filled-tomato" class="timer-pomodoro__img">
+                </a>
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/tomato-failed.svg" alt="failed-tomato" class="timer-pomodoro__img">
+                </a>
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/empty-tomato.svg" alt="empty-tomato" class="timer-pomodoro__img">
+                </a>
+            </div>
+            <span class="timer__icon-add icon-add"></span>
+        </div>
+        <div class="time">
+                <span data-title="Go to Global List"> 
+                    <a class="timer__icon-arrow-left icon-arrow-left v-hidden"  >  </a>
+                </span>
+            <div class="time__wrapper">
+                <div class="time-circle">
+                    <div class="time-circle-inside">
+                        <div class="c" style="transform: rotate(0deg) skew(0deg)"></div>
+                    </div>
+                    <div class="time-circle-inside__text">
+                        <span class="time-circle__text-upper">Break</span>
+                        <span class="time-circle__number">3</span>
+                        <span class="time-circle__min">min</span>
+                    </div>
+                </div>
+            </div>
+            <span class="timer__icon-arrow-right icon-arrow-right v-hidden"></span>
+        </div>
+        <div class=" timer__btns pomodoros__btns">
+            <a href="#" class="btn btn--secondary">Start Pomoadora</a> 
+        </div>
+    </section>
+    <!-- end 5 -->
+
+    <!-- start 6 delete hidden for section and header-->
+    <header class="timer__header  hidden">  
+        <ul class="menu">
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-list"></a>
+            </li>
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-statistics "></a>
+            </li>
+            <li class="menu__item">
+                <a href="#" class="menu__link icon-settings"></a>
+            </li>
+        </ul>
+    </header>
+    <!-- continue 6, delete hidden for section and header-->
+    <section class="timer hidden">
+        <h3 class="timer__heading"  >1. Creating a New Design</h3>
+        <p class="timer__p" >Lorem ipsum dolor sit amet consectetur adipiscing</p>
+        <div class="timer__pomodoro">
+            <div class="timer-pomodoro__imgs">
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/fill tomato.svg" alt="filled-tomato" class="timer-pomodoro__img">
+                </a>
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/fill tomato.svg" alt="filled-tomato" class="timer-pomodoro__img">
+                </a>
+                <a href="#" class="timer-pomodoro__link">
+                    <img src="/images/fill tomato.svg" alt="filled-tomato" class="timer-pomodoro__img">
+                </a>
+            </div>
+        </div>
+        <div class="time">
+            <span data-title="Go to Global List"> 
+                <a class="timer__icon-arrow-left icon-arrow-left"  > </a>
+            </span>
+            <div class="time__wrapper">
+                <div class="time-circle">
+                    <div class="time-circle-inside">
+                        <div class="c" style="transform: rotate(0deg) skew(0deg)"></div>
+                        <div class=" c c2" style="transform: rotate(90deg) skew(0deg)"></div>    
+                        <div class=" c c3" style="transform: rotate(180deg) skew(0deg)"></div>
+                        <div class="c c4" style="transform: rotate(270deg) skew(0deg)"></div>
+                    </div>
+                    <div class="time-circle-inside__text">
+                        <span class="time-circle__text-2">You</span>
+                        <span class="time-circle__text-2">Completed</span>
+                        <span class="time-circle__text-2">Task</span>
+                    </div>
+                </div>
+            </div>
+            <span data-title="Go to Global List"> 
+                <a class="timer__icon-arrow-right icon-arrow-right"  > </a>
+            </span>
+        </div>
+    </section>
+    <!-- end 6 -->
+
+    <script src="/bundle.js"></script>
+</body>
+
+</html>

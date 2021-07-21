@@ -3,4 +3,49 @@
   -moz-opacity: @opacity;
   opacity: @opacity;
 }
-
+.for(@list, @code) {
+  & {
+      .loop(@i:1) when (@i =< length(@list)) {
+          @value: extract(@list, @i);
+          @code();
+          .loop(@i + 1);
+      }
+      .loop(); 
+  }
+}
+.btn_mixin(@ptb, @plr,@w,@fsz){
+  text-align: center;
+  font-family: @font_secondary_b,sans-serif;
+  display: inline-block;
+  color:@white;
+  padding: @ptb @plr;
+  width: @w;
+  font-size: @fsz;
+}
+.sub-menu__line-add{
+  content: "|";
+  margin-right: 1.6rem;
+  margin-left: 1.6rem; 
+}
+.sub-menu__firts-line-del{
+  content: '';
+  margin-left: 0;
+  margin-right: 0;
+}
+.circle(@bg-color){
+  content: '';
+  margin-top: -2px;
+  height: 16px;
+  width: 16px;
+  background-color: @bg-color;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 2rem;
+  margin-left: -4rem;
+  vertical-align: top;
+}
+.task-list__padding-wrapper(@t,@l,@r){
+  padding-top: @t;
+  padding-left: @l;
+  padding-right: @r;
+}

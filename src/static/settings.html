@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Productivity app</title>
+</head>
+
+<body>
+    <section class="settings">
+        <div class="settings__header">
+            <h1 class="heading-primary">
+                Settings
+            </h1>
+            <ul class="menu">
+                <li class="menu__item">
+                    <a href="#" class="menu__link icon-list"></a>
+                </li>
+                <li class="menu__item">
+                    <a href="#" class="menu__link icon-statistics"></a>
+                </li>
+                <li class="menu__item">
+                    <a href="#" class="menu__link icon-settings active"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="settings__data">
+            <ul class="sub-menu">
+                <li class="sub-menu__item">
+                    <a href="#" class="sub-menu__link">
+                        Pomodoros
+                    </a>
+                </li>
+                <li class="sub-menu__item">
+                    <a href="#" class="sub-menu__link active">
+                        Categories 
+                    </a>
+                </li>
+            </ul>
+            <div class="pomodoros-categories__wrapper">
+
+                <!-- view current - setting->Categories, add class 'hidden'  to hide and delete on 82 line -->
+                <div class="categories__wrapper  ">
+                    <div class="categories">
+                        <p class="settings__sub-heading">
+                            Categories list overview
+                        </p>
+                        <ul class="categories__list">
+                            <li class="categories__item">
+                                <span class="categories__text">
+                                    Work
+                                </span>
+                            </li>
+                            <li class="categories__item"> 
+                                <span class="categories__text">
+                                    Education
+                                </span>
+                            </li>
+                            <li class="categories__item">
+                                <span class="categories__text">
+                                    Hobby
+                                </span>
+                            </li>
+                            <li class="categories__item">
+                                <span class="categories__text">
+                                    Sport
+                                </span>
+                            </li>
+                            <li class="categories__item  ">
+                                <span class="categories__text">
+                                    Other
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn--primary">Go to Tasks</a>  
+                </div>
+                <!-- delete 'hidden' to switch on tab setting->pomodoros  and add on 45 line -->
+                <div class="pomodoros__wrapper hidden">
+                    <div class="pomodoros">
+                        <p class="settings__sub-heading">
+                            Pomodoros settings
+                        </p>
+                        <div class="pomodoros__data-wrapper">
+                            <div class="pomodoros__data">
+                                <div class="pomodoros__item p-first">
+                                    <span class="pomodoros__category">
+                                        Work Time
+                                    </span>
+                                    <div class="pomodoros__input ">
+                                        <span class="icon-minus"></span>
+                                        <input type="number" id="" placeholder="25">
+                                        <span class="icon-add"></span>
+                                    </div>
+                                </div>
+                                <p class="pomodoros__input-info">
+                                    Please select a value between 15 and 25
+                                    <span class="pomodoros__input-info--active">minutes</span>
+                                </p>
+                            </div>
+                            <div class="pomodoros__data">
+                                <div class="pomodoros__item p-second">
+                                    <span class="pomodoros__category">
+                                        Work Iteration
+                                    </span>
+                                    <div class="pomodoros__input">
+                                        <span class="icon-minus"></span>
+                                        <input type="number" id="" placeholder="25">
+                                        <span class="icon-add"></span>
+                                    </div>
+                                </div>
+                                <p class="pomodoros__input-info">
+                                    Please select a value between 2 and 5
+                                    <span class="pomodoros__input-info--active">iterations</span> 
+                                </p>
+                            </div>
+                            <div class="pomodoros__data">
+                                <div class="pomodoros__item p-third">
+                                    <span class="pomodoros__category">
+                                        Short Break
+                                    </span>
+                                    <div class="pomodoros__input">
+                                        <span class="icon-minus"></span>
+                                        <input type="number" id="" placeholder="5">
+                                        <span class="icon-add"></span>
+                                    </div>
+                                </div>
+                                <p class="pomodoros__input-info">
+                                    Please select a value between 3 and 5
+                                    <span class="pomodoros__input-info--active">minutes</span> 
+                                </p>
+                            </div>
+                            <div class="pomodoros__data">
+                                <div class="pomodoros__item p-fourth">
+                                    <span class="pomodoros__category">
+                                        long break
+                                    </span>
+                                    <div class="pomodoros__input">
+                                        <span class="icon-minus"></span>
+                                        <input type="number" id="" placeholder="30">
+                                        <span class="icon-add"></span>
+                                    </div>
+                                    
+                                </div>
+                                <p class="pomodoros__input-info ">
+                                    Please select a value between 15 and 30
+                                    <span class="pomodoros__input-info--active">minutes</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pomodoros__cycle">
+                        <h3 class="pomodoros__cycle-heading">Your cycle</h3>
+                        <img  class="pomodoros__cycle-graph" src="/images/cycle1.png" alt="adsad" />
+                    </div>
+                    <div class="pomodoros__btns">
+                        <a href="#" class="btn btn--primary">Go to tasks</a> 
+                        <a href="#" class="btn btn--secondary">Save</a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/bundle.js"></script>
+</body>
+
+</html>
