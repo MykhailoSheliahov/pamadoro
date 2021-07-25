@@ -8,6 +8,7 @@
 *.7z
 *.exe
 *.exe
+*.exe
 
 ### Exclude env and editors folders
 .DS_Store
