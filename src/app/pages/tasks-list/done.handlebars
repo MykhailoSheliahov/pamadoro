@@ -1,0 +1,24 @@
+
+{{#each this}}
+    <div class="task-list__item category_{{category}} priority_{{priority.name}} task-done-bg" data-id="{{id}}" data-key="{{key}}">
+      <div class="task-list__date">
+          <span class="task-list__day">{{createDate.day}}</span>
+          <p class="task-list__month">{{createDate.month}}</p>
+      </div>
+      <div class="task-list__data">
+        <div class="task-list__text">
+          <h3 class="task-list__title s-decor-through">{{title}}</h3>
+          <p class="task-list__p">
+            {{description}}
+          </p>
+        </div>
+        <div class="task-list__btns v-hidden">
+          <a href="#" class="icon-edit task-list__btns-edit"></a>
+          <a href="#" class="icon-trash task-list__btns-trash"></a>
+        </div>
+      </div>
+      <div class="task-list__estimation icon-tomato">
+        <a href="/timer" class=" task-list__estimation-text ">{{estimation}}</a>
+      </div>
+    </div>
+{{/each }}

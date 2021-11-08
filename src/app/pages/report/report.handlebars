@@ -1,0 +1,77 @@
+<section class="report">       
+    <div class="report__header task-list__header sticky">
+        <h1 class="heading-primary ">
+            {{heading}}
+        </h1>
+        <div class="logo hidden">
+            <img src="/images/Logo.svg" alt="logo" class="logo__item">
+        </div>
+        <ul class="menu">
+            <li class="menu__item">
+                <a href="/task-list" class="menu__link icon-list"></a>
+            </li>
+            <li class="menu__item">
+                <a href="/report" class="menu__link icon-statistics active"></a>
+            </li>
+            <li class="menu__item">
+                <a href="/settings" class="menu__link icon-settings"></a>
+            </li>
+        </ul>
+    </div>
+    <section class="submenu-secondary">
+        <ul class="sub-menu sub-menu__tasks">
+            <li class="sub-menu__item">
+                <a href="/report/day/tasks" class="sub-menu__link active">{{subMenu.secondary.linkDay}}</a>
+            </li>
+            <li class="sub-menu__item">
+                <a href="/report/week/tasks" class="sub-menu__link">{{subMenu.secondary.linkWeek}}</a>
+            </li>
+            <li class="sub-menu__item">
+                <a href="/report/month/tasks" class="sub-menu__link ">{{subMenu.secondary.linkMonth}}</a>
+            </li>
+        </ul>
+          <ul class="sub-menu sub-menu__pomodoros sub-menu__pomodoros-hidden">
+            <li class="sub-menu__item">
+                <a href="/report/day/pomodoros" class="sub-menu__link active">{{subMenu.secondary.linkDay}}</a>
+            </li>
+            <li class="sub-menu__item">
+                <a href="/report/week/pomodoros" class="sub-menu__link">{{subMenu.secondary.linkWeek}}</a>
+            </li>
+            <li class="sub-menu__item">
+                <a href="/report/month/pomodoros" class="sub-menu__link ">{{subMenu.secondary.linkMonth}}</a>
+            </li>
+        </ul>
+        <section class="report-analyse">
+            <a href="/task-list" class="report-analyse__btn-arrow ">
+                <span class="icon-arrow-left"></span>
+            </a>
+
+            <!-- block images  for  down menu Pomodoros, delete 'hidden' for block and for img to change between img-->
+            <div id="container" class="report-analyse__tasks">
+                {{!-- <img class="report-analyse__graph" src="/images/tasks_day.png" alt="report-tasks-day" /> --}}
+                {{!-- <img class="report-analyse__graph hidden" src="/images/tasks_week.png" alt="report-tasks-week" /> --}}
+                {{!-- <img class="report-analyse__graph hidden" src="/images/tasks_month.png" alt="report-tasks-month" /> --}}
+            </div>
+
+            <!-- block images  for  down menu Tasks, delete 'hidden' for block  and for img to change between them-->
+            <div class="report-analyse__pomodoros hidden ">
+                <img class="report-analyse__graph hidden" src="/images/pomodoros_day.png"
+                    alt="report-pomodoros-day" />
+                <img class="report-analyse__graph hidden" src="/images/pomodoros_week.png"
+                    alt="report-pomodoros-week" />
+                <img class="report-analyse__graph hidden" src="/images/pomodoros_month.png"
+                    alt="report-pomodoros-month" />
+            </div>
+        </section>
+    </section>
+    <section class="submenu-primary">
+        <ul class="sub-menu">
+            <li class="sub-menu__item">
+                <a href="/report/day/pomodoros" class="sub-menu__link">{{subMenu.primary.linkPomodoros}}</a>
+            </li>
+            <li class="sub-menu__item">
+                <a href="/report/day/tasks" class="sub-menu__link active">{{subMenu.primary.linkTasks}}</a>
+            </li>
+        </ul>
+    </section>
+</section>

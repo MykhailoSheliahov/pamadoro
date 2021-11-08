@@ -1,0 +1,118 @@
+<div class="timer__header task-list__header sticky">
+    <h1 class="heading-primary ">
+        
+    </h1>
+    <div class="logo hidden">
+        <img src="/images/Logo.svg" alt="logo" class="logo__item">
+    </div>
+    <ul class="menu">
+        <li class="menu__item">
+            <a href="/task-list" class="menu__link icon-list"></a>
+        </li>
+        <li class="menu__item">
+            <a href="/report" class="menu__link icon-statistics"></a>
+        </li>
+        <li class="menu__item">
+            <a href="/settings" class="menu__link icon-settings"></a>
+        </li>
+    </ul> 
+</div>
+<!-- continue 1-2markup,  current view, add hidden  to hide-->
+<section class="timer  ">
+    <h3 class="timer__heading" >{{heading}}</h3>
+    <p class="timer__text" >{{text}}</p>
+    <div class="timer__pomodoro">
+        <div class="timer-pomodoro__imgs">
+            
+            
+        </div>
+        <span class="timer__icon-add icon-add hidden"></span>
+    </div>
+    <div class="time">
+            <span data-title="Go to Global List"> 
+                <a href="/task-list" class="timer__icon-arrow-left icon-arrow-left">  </a>
+            </span>
+        <div class="time__wrapper timer-1">
+            <a href="#" class="time-circle">
+                <div class="time-circle-inside__text">
+                    <span class="time-circle__text">{{cycleInnerText.textStart}}</span>
+                </div>
+            </a>
+        </div>
+        <div class="time__wrapper timer-2 hidden">
+                <a class="time-circle">
+                    <div class="time-circle-inside">
+                        <div class="c"></div>
+                    </div>
+                    <div class="time-circle-inside__text">
+                        <span class="time-circle__number">6</span>
+                        <span class="time-circle__min">min</span>
+                    </div>
+                </a>
+        </div>
+        <div class="time__wrapper timer-3 hidden">
+                <div class="time-circle">
+                    <div class="time-circle-inside">
+                        <div class="outer-circle" style="transform: rotate(0deg) skew(0deg)"></div>
+                        <div class="outer-circle outer-circle__part-2" style="transform: rotate(90deg) skew(0deg)">
+                        </div>
+                        <div class="outer-circle outer-circle__part-3" style="transform: rotate(180deg) skew(0deg)">
+                        </div>
+                        <div class="outer-circle outer-circle__part-4" style="transform: rotate(270deg) skew(0deg)">
+                        </div>
+                    </div>
+                    <div class="time-circle-inside__text">
+                        <span class="time-circle__text">Break is</span>
+                        <span class="time-circle__text">over</span>
+                    </div>
+                </div>
+        </div>
+        <div class="time__wrapper timer-4 hidden">
+                <div class="time-circle">
+                    <div class="time-circle-inside">
+                        <div class="c" style="transform: rotate(0deg) skew(0deg)"></div>
+                    </div>
+                    <div class="time-circle-inside__text">
+                        <span class="time-circle__text-upper">Break</span>
+                        <span class="time-circle__number">3</span>
+                        <span class="time-circle__min">min</span>
+                    </div>
+                </div>
+        </div>
+        <div class="time__wrapper timer-5 hidden">
+                <div class="time-circle">
+                    <div class="time-circle-inside">
+                        <div class="outer-circle" style="transform: rotate(0deg) skew(0deg)"></div>
+                        <div class="outer-circle outer-circle__part-2" style="transform: rotate(90deg) skew(0deg)">
+                        </div>
+                        <div class="outer-circle outer-circle__part-3" style="transform: rotate(180deg) skew(0deg)">
+                        </div>
+                        <div class="outer-circle outer-circle__part-4" style="transform: rotate(270deg) skew(0deg)">
+                        </div>
+                    </div>
+                    <div class="time-circle-inside__text">
+                        <span class="time-circle__text-2">You</span>
+                        <span class="time-circle__text-2">Completed</span>
+                        <span class="time-circle__text-2">Task</span>
+                    </div>
+                </div>
+        </div>
+        <span >
+              <a href="/report" class="timer__icon-arrow-right icon-arrow-right v-hidden">  </a>
+        </span>
+    </div>
+    <div class=" timer__btns pomodoros__btns pomodoros__btns-2  pomodoros__btns-2-finish-st">
+        
+        <a href="#" class="btn btn--secondary start-task">{{buttons.btnSecondary}}</a> 
+
+        <a href="#" class="btn btn--third  fail-pomodora hidden">Fail Pomodora</a>
+        <a href="#" class="btn btn--secondary finish-pomodora hidden">Finish Pomodora</a> 
+
+        <a href="#" class="btn btn--secondary start-pomodora hidden">Start Pomodora</a> 
+        <a href="#" class="btn btn--primary finish-task hidden ">Finish Task</a> 
+
+     
+        
+        
+    </div>
+</section>

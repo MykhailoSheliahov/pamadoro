@@ -1,0 +1,39 @@
+
+    {{#each .}}
+      <div class="global-list__item category_{{category}} ">
+        <label class="global-list__radio global-list__radio-before global-list__category-heading ">
+          <span class="global-list__radio-input">
+            <input type="radio" name="radio" class="">
+            <span class="global-list__radio-control "></span>
+          </span>
+          <span class="global-list__radio-label ">{{category}}</span>
+        </label>
+
+        <div class="task-list__wrapper ">
+          {{#categoryTasks}}
+          <div class="task-list__item priority_{{priority.name}}" data-id="{{id}}" data-key="{{key}}">
+            <div class="task-list__date paddind-clear">
+                <span class="date-icon global-task__icon-trash task-list__icon-trash icon-trash "></span>
+              
+            </div>
+            <div class="task-list__data">
+              <div class="task-list__text">
+                <h3 class="task-list__title ">{{title}}</h3>
+                <p class="task-list__p">
+                  {{description}}
+                </p>
+              </div>
+              <div class="task-list__btns">
+                <a href="#" class="icon-arrows-up task-list__btns-arrows-up"></a>
+                <a href="#" class="icon-edit task-list__btns-edit"></a>
+                <a href="#" class="icon-trash task-list__btns-trash"></a>
+              </div>
+            </div>
+            <div class="task-list__estimation icon-tomato ">
+              <span class=" task-list__estimation-text ">{{estimation}}</span>
+            </div>
+          </div>
+          {{/categoryTasks}}
+        </div>
+      </div>
+{{/each}}

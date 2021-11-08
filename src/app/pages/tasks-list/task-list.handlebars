@@ -1,0 +1,319 @@
+<header class="settings__header task-list__header sticky">  
+  <div class="task-list__heading ">
+    <h1 class="heading-primary">Daily Task List</h1>
+    <a href="#" class="task-list__btn-add icon-add sticky-icon-add"></a>
+  </div>
+  
+  {{!-- <!-- sticky menu --> --}}
+  <div class="logo hidden">
+    <img src="/images/Logo.svg" alt="logo" class="logo__item">
+    <a href="#" class="task-list__btn-add icon-add menu__link"></a>
+  </div>
+  
+  <ul class="menu"> 
+      <li class="menu__item">
+          <a href="#" class="menu__link icon-trash hidden" data-isremove="false">
+              <span class="icon-trash__items hidden">0</span>
+          </a>
+      </li>
+      <li class="menu__item">
+          <a href="/task-list" class="menu__link icon-list active"></a>
+      </li>
+      <li class="menu__item">
+          <a href="/report" class="menu__link icon-statistics "></a>
+      </li>
+      <li class="menu__item">
+        <a href="/settings" class="menu__link icon-settings"></a>
+    </li>
+  </ul>
+</header> 
+  
+  <section class="add-first-task hidden">
+    <div class="add-first-task__block">
+      <a href="#" class="add-first-task__link">
+        <img src="/images/tomato-add.svg" alt="add-first-task" class="add-first-task__img">
+      </a>
+      <p class="add-first-task__text ">Add your first task</p>
+    </div>
+  </section>
+  
+
+<section class="task-list">
+  <nav class="task-list__sub-menu fl-menu-second">
+      <ul class="sub-menu sub-menu__secondary">
+        <li class="sub-menu__item hidden">
+          <a href="#" class="sub-menu__link daily-task__select-all">Select All</a>
+        </li>
+        <li class="sub-menu__item hidden">
+          <a href="#" class="sub-menu__link daily-task__deselect-all">Deselect All</a>
+        </li>
+      </ul>
+    <ul class="sub-menu">
+      <li class="sub-menu__item">
+          <a href="#" class="sub-menu__link sub-menu__link-todo active">To Do</a>
+      </li>
+      <li class="sub-menu__item">
+          <a href="#" class="sub-menu__link sub-menu__link-done">Done</a>
+      </li>
+    </ul>
+  </nav>
+
+    <section class="move-first-task">
+      <p class="move-first-task__p">Task added,
+      <p class="move-first-task__p-second">move it to the top 5 in daily task list</p>
+      </p>
+      <p class="move-first-task__icon-arrow icon-arrow_circle"></p>
+    </section>
+
+  <div class="task-list__wrapper hidden">
+
+  </div>
+</section>
+
+  <section class="global-list">
+    <div class="global-list__menu">
+      <div class="global-list__btns">
+        <a href="#" class="global-list__btn">Global List
+          <span class="icon-global-list-arrow-down global-list__btn-arrow"></span>
+        </a>
+        
+      </div>
+      <div class="global-list_sub-menu-wrapper ">
+        <ul class="sub-menu ">
+          <li class="sub-menu__item active">
+            <a href="#" class="sub-menu__link sub-menu__link-all">All</a>
+          </li>
+          <li class="sub-menu__item">
+            <a href="#" class="sub-menu__link sub-menu__link-urgent">Urgent</a>
+          </li>
+          <li class="sub-menu__item">
+            <a href="#" class="sub-menu__link sub-menu__link-high">High</a>
+          </li>
+          <li class="sub-menu__item">
+            <a href="#" class="sub-menu__link sub-menu__link-middle">MIddle</a>
+          </li>
+          <li class="sub-menu__item">
+            <a href="#" class="sub-menu__link sub-menu__link-low">Low</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <ul class="sub-menu sub-menu-v-hidden-mobile">
+      <li class="sub-menu__item hidden">
+        <a href="#" class="sub-menu__link global-task__select-all">Select All</a>
+      </li>
+      <li class="sub-menu__item hidden">
+        <a href="#" class="sub-menu__link global-task__deselect-all">Deselect All</a>
+      </li>
+    </ul>
+    <div class="global-list__items">
+
+    {{#each .}}
+      <div class="global-list__item category_{{category}} ">
+        <label class="global-list__radio global-list__radio-before global-list__category-heading ">
+          <span class="global-list__radio-input">
+            <input type="radio" name="radio" class="">
+            <span class="global-list__radio-control "></span>
+          </span>
+          <span class="global-list__radio-label ">{{category}}</span>
+        </label>
+
+        <div class="task-list__wrapper ">
+          {{#categoryTasks}}
+          <div class="task-list__item priority_{{priority.name}}" data-id="{{id}}" data-key="{{key}}">
+            <div class="task-list__date">
+              <span class="task-list__day">{{createDate.day}}</span>
+              <p class="task-list__month">{{createDate.month}}</p>
+            </div>
+            <div class="task-list__data">
+              <div class="task-list__text">
+                <h3 class="task-list__title ">{{title}}</h3>
+                <p class="task-list__p">
+                  {{description}}
+                </p>
+              </div>
+              <div class="task-list__btns">
+                <a href="#" class="icon-arrows-up task-list__btns-arrows-up"></a>
+                <a href="#" class="icon-edit task-list__btns-edit"></a>
+                <a href="#" class="icon-trash task-list__btns-trash"></a>
+              </div>
+            </div>
+            <div class="task-list__estimation icon-tomato ">
+              <span class=" task-list__estimation-text ">{{estimation}}</span>
+            </div>
+          </div>
+          {{/categoryTasks}}
+        </div>
+      </div>
+    {{/each}}
+    
+    </div>
+  </section>
+
+
+
+
+  <section class="add-edit-task__wrapper b-popup hidden">
+    <section class="add-edit-task b-popup-content">
+      <div class="task__btns">
+        <a href="#" class="btn__icon-check icon-check"></a>
+        <a href="#" class="btn__icon-close  icon-close"></a>
+      </div>
+      <div class="task__data">
+        <!-- current view, apply  hidden -->
+        <h3 class="task__data-heading task__data-heading-add">Add Task</h3> 
+        <!--  delete hidden -->
+        <h3 class="task__data-heading hidden task__data-heading-edit">Edit Task</h3>
+        <form action="#" class="task__form">
+          
+          <div class="task__item ">
+            <span class="task__title">Title</span>
+              <input type="text" class="task_value task__title-value" placeholder="Add tittle here" required>
+          </div>
+    
+          <div class="task__item ">
+            <span class="task__title">Description</span>
+              <input type="text" class="task_value task__description-value" placeholder="Add description here" required>
+          </div>
+    
+          <div class="task__item ">        
+            <span class="task__title">Category</span>
+            <span class="task__radio">
+    
+              <label class="radio radio-before">
+                <span class="radio__input">
+                  <input type="radio" name="add-task-radio" checked class="input__radio cat-work" value="work">
+                  <span class="radio__control"></span>
+                  <span class="radio__label">Work</span>
+                </span>
+                
+              </label>
+    
+              <label class="radio radio-before">
+                <span class="radio__input">
+                  <input type="radio" name="add-task-radio"  class="input__radio cat-education" value="education">
+                  <span class="radio__control"></span>
+                  <span class="radio__label">Education</span>
+                </span>
+              </label>
+              
+              <label class="radio radio-before">
+                <span class="radio__input">
+                  <input type="radio" name="add-task-radio"  class="input__radio cat-hobby" value="hobby">
+                  <span class="radio__control"></span>
+                  <span class="radio__label">Hobby</span>
+                </span>
+              </label> 
+    
+              <label class="radio radio-before">
+                <span class="radio__input">
+                  <input type="radio" name="add-task-radio"  class="input__radio cat-sport" value="sport">
+                  <span class="radio__control"></span>
+                  <span class="radio__label">Sport</span>
+                </span>
+              </label> 
+    
+              <label class="radio radio-before">
+                <span class="radio__input">
+                  <input type="radio" name="add-task-radio"  class="input__radio cat-other" value="other">
+                  <span class="radio__control"></span>
+                  <span class="radio__label">Other</span>
+                </span>
+              </label> 
+    
+            </span>
+          </div>
+    
+          <div class="task__item ">
+            <span class="task__title">Deadline</span>
+              <input type="date" class="task__date task_value" placeholder="May 23, 2021" required>
+          </div>
+          <div class="task__item ">
+            <span class="task__title">Estimation</span>
+            <div class="estim">
+              <input type="radio" class="estim-input"  
+                      id="estim-add-1" name="estim-add" value="5">
+              <label for="estim-add-1" class="estimation-pomodoro"></label>
+
+              <input type="radio" class="estim-input"
+                  id="estim-add-2" name="estim-add" value="4">
+              <label for="estim-add-2" class="estimation-pomodoro"></label>
+
+              <input type="radio" class="estim-input"
+                  id="estim-add-3" name="estim-add" value="3">
+              <label for="estim-add-3" class="estimation-pomodoro"></label>
+
+              <input type="radio" class="estim-input"
+                  id="estim-add-4" name="estim-add" value="2">
+              <label for="estim-add-4" class="estimation-pomodoro"></label>
+
+              <input type="radio" class="estim-input"
+                  id="estim-add-5" name="estim-add" value="1" checked>
+              <label for="estim-add-5" class="estimation-pomodoro"></label>
+
+            </div>
+          </div>
+    
+          <div class="task__item ">        
+            <span class="task__title">Priority</span>
+            <span class="task__radio">
+    
+              <label class="radio radio-before">
+                <span class="radio__input">
+                  <input type="radio" name="add-task1-radio" checked class="input__radio  pr-urgent" value="1" data-priority="urgent">
+                  <span class="radio__control"></span>
+                  <span class="radio__label">Urgent</span>
+                </span>
+              </label>
+    
+              <label class="radio radio-before">
+                <span class="radio__input">
+                  <input type="radio" name="add-task1-radio"  class="input__radio pr-high" value="2" data-priority="high">
+                  <span class="radio__control"></span>
+                  <span class="radio__label">High</span>
+                </span>
+                
+              </label>
+              
+              <label class="radio radio-before">
+                <span class="radio__input">
+                  <input type="radio" name="add-task1-radio"  class="input__radio pr-middle" value="3" data-priority="middle">
+                  <span class="radio__control"></span>
+                  <span class="radio__label">Middle</span>
+                </span>
+                
+              </label> 
+    
+              <label class="radio radio-before">
+                <span class="radio__input">
+                  <input type="radio" name="add-task1-radio"  class="input__radio pr-low" value="4" data-priority="low">
+                  <span class="radio__control"></span>
+                  <span class="radio__label">Low</span>
+                </span>
+              </label> 
+            </span>
+          </div>    
+        </form>
+      </div>
+    </section>
+  </section>
+
+    <section class="remove-task__wrapper b-popup hidden">
+    <section class="remove-task b-popup-content">
+      <div class="task__btns">
+
+        <a href="#" class="btn__icon-close-delete icon-close"></a>
+      </div>
+      <div class="task__data">
+
+        <h3 class="task__data-heading ">Remove Task</h3>
+        <p class="task__data-text">
+          Are you sure you want to remove selected task(s)?
+        </p>
+        <div class="pomodoros__btns first-entrance-2__btns">
+          <a href="#" class="btn btn--primary cancel-remove">Cancel</a>
+          <a href="#" class="btn btn--third remove-task">Remove</a>
+        </div>
+      </div>
+    </section>
+  </section>
