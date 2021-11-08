@@ -2,7 +2,7 @@ import { db } from '../../db';
 import { Counter } from './../counterField/counterField'
 
 
-const workTimeElInput = document.querySelector('.work-time');
+let workTimeElInput = document.querySelector('.work-time');
 const workIterationElInput = document.querySelector('.work-iteration');
 const shortBreakElInput = document.querySelector('.short-break');
 const longBreakElInput = document.querySelector('.long-break');
@@ -14,8 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // const shortBreakElInput = document.querySelector('.short-break');
     // const longBreakElInput = document.querySelector('.long-break');
 
-
+    
+    // db.setSettingsData()
     db.getSettingsData(workTimeElInput, workIterationElInput, shortBreakElInput, longBreakElInput);
+    
 
 });
 

@@ -5,10 +5,10 @@ class DB {
     initialize() {
         const firebaseConfig = {
             apiKey: "AIzaSyDLk78tsQjINdiVtb-MmJ-h4jQhyPZVvjE",
-            authDomain: "pomodoro-e1e98.firebaseapp.com",
-            databaseURL: "https://pomodor-fc498-default-rtdb.firebaseio.com/",
-            projectId: "pomodoro-e1e98",
-            storageBucket: "pomodoro-e1e98.appspot.com",
+            authDomain: "pomodo-37753.firebaseapp.com",
+            databaseURL: "https://pomodo-37753-default-rtdb.firebaseio.com/",
+            projectId: "pomodo-37753",
+            storageBucket: "pomodo-37753.appspot.com",
             messagingSenderId: "1042859321426",
             appId: "1:1042859321426:web:27102fee8206e6c329d78b",
             measurementId: "G-Q8CHE9JBFW"
@@ -35,6 +35,7 @@ class DB {
         const dbRef = firebase.database().ref();
         dbRef.child("settings").get().then((props) => {
             if (props.exists()) {
+                // console.log(props.val().shortBreak);
                 return {
                     workTime: props.val().workTime,
                     workIteration: props.val().workIteration,
