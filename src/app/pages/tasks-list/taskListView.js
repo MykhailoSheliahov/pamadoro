@@ -13,10 +13,19 @@ export class View {
         this.taskListHTML = document.querySelector('.task-list');
         this.isEdit = false
     }
+    
 
     bindAddTask(handler) {
+        $(function() {
+            $( "#datepicker" ).datepicker({ firstDay: 1});
+        });
+      
 
         this.taskList.addEventListener('click', event => {
+            const title = document.querySelector('.task__title-value').value;
+            const description = document.querySelector('.task__description-value').value;
+            const date =  document.querySelector('.task__date').value;
+            
             if (event.target.closest('.task-list__btn-add')) {
                 document.querySelector('.add-edit-task__wrapper').classList.remove('hidden');
                 document.querySelector('.menu').style.zIndex = '0';
@@ -30,7 +39,15 @@ export class View {
                 document.querySelector('#estim-add-5').checked = true;
                 document.querySelector('input[name="add-task1-radio"]').checked = true;
             }
-            else if (event.target.closest('.btn__icon-check') && !this.isEdit) {
+            else if((event.target.closest('.btn__icon-check') && !this.isEdit) && ( !title || !description || !date)){
+                const alertErr = document.querySelector('.alert-msg-err');
+                
+                alertErr.classList.remove('hidden');
+                setTimeout(()=>{
+                    alertErr.classList.add('hidden');
+                },3000)
+            }
+            else if (event.target.closest('.btn__icon-check') && !this.isEdit && title && description && date) {
                 document.querySelector('.add-edit-task__wrapper').classList.add('hidden');
                 document.querySelector('.add-first-task').classList.add("hidden");
                 document.querySelector('.task-list').classList.remove("hidden");
@@ -48,39 +65,62 @@ export class View {
                 const priorityValue = document.querySelector('input[name="add-task1-radio"]:checked').value;
                 const priorityName = document.querySelector('input[name="add-task1-radio"]:checked').dataset.priority;
 
-                const createdDate2 = new Date().toISOString().split('T')[0];
-                const createdDate = document.querySelector('.task__date').value;
-                const date = new Date(createdDate);
-                const month = date.toLocaleString('default', { month: 'short' });
-                let monthNumber = date.getMonth() + 1;
+                const formatter = new Intl.DateTimeFormat('us', { month: 'short' });
+                const month = formatter.format(new Date(deadlineDate));
+                
 
-                if (monthNumber > 0 && monthNumber < 10) {
-                    monthNumber = '0' + monthNumber
-                }
-                const day = date.getUTCDate();
-                const today = new Date().getUTCDate() + 1;
-                const year = new Date().getFullYear()
-                const todaymonth = new Date().toLocaleString('default', { month: 'short' });
+                // const createdDate2 = new Date().toISOString().split('T')[0];
+              
+                // const createdDate = document.querySelector('.task__date').value;
+                // console.log(createdDate)
+                // const date = new Date(createdDate);
+                // console.log(date)
+                // const month = date.toLocaleString('default', { month: 'short' });
+                // console.log(month)
+                // let monthNumber = date.getMonth() + 1;
+                // console.log(monthNumber)
 
-                const createDate = {
-                    day: '',
-                    month: '',
-                    year: '',
-                    monthNumber: ''
-                }
+                // if (monthNumber > 0 && monthNumber < 10) {
+                //     monthNumber = '0' + monthNumber
+                // }
+// const month1 = formatter.format(new Date());
 
-                if (day === today && month === todaymonth) {
-                    createDate.day = '';
-                    createDate.month = 'Today';
-                    createDate.year = year;
-                    createDate.monthNumber = monthNumber;
-                }
-                else {
-                    createDate.day = day;
-                    createDate.month = month;
-                    createDate.year = year;
-                    createDate.monthNumber = monthNumber;
-                }
+                // const date = new Date(deadlineDate)
+                // const day = date.getUTCDate();
+                // console.log(day)
+                // const today = day.getUTCDate() + 1;
+                // const year = new Date().getFullYear()
+                // console.log(year)
+                // const todaymonth = new Date().toLocaleString('default', { month: 'short' });
+                // console.log(todaymonth)
+
+                // const createDate = {
+                //     day: '',
+                //     month: '',
+                //     year: '',
+                //     monthNumber: ''
+                // }
+
+                // if (day === today && month === todaymonth) {
+                //     createDate.day = '';
+                //     createDate.month = 'Today';
+                //     createDate.year = year;
+                //     createDate.monthNumber = monthNumber;
+                // }
+                // else {
+                //     createDate.day = day;
+                //     createDate.month = month;
+                //     createDate.year = year;
+                //     createDate.monthNumber = monthNumber;
+                // }
+                const alertOk = document.querySelector('.alert-msg-ok');
+                alertOk.classList.remove('hidden');
+                document.querySelector('.alert-msg-ok .alert-msg__text')
+                    .textContent = 'Your task was successfully saved';
+
+                setTimeout(()=>{
+                    alertOk.classList.add('hidden');
+                },3000)
 
                 handler({
                     title, description, category, priority: { name: priorityName, value: priorityValue }, estimation, deadlineDate,
@@ -91,12 +131,12 @@ export class View {
                         COMPLETED: false
                     },
                     createDate: {
-                        day: createDate.day,
-                        month: createDate.month,
-                        year: createDate.year,
-                        monthNumber: createDate.monthNumber
+                        day: deadlineDate.slice(3,5),
+                        month: month,
+                        year: deadlineDate.slice(6,10),
+                        monthNumber: deadlineDate.slice(0,2),
                     },
-                    createdDate2: createdDate2,
+                    // createdDate2: 'createdDate2',
                     completedPomodoros: '',
                     failedPomodoros: 0,
                     failedTask: false,
@@ -113,10 +153,11 @@ export class View {
                 document.querySelector('.global-list_sub-menu-wrapper ').classList.toggle('hidden');
                 document.querySelector('.global-list__items').classList.toggle('hidden');
             }
+          
         })
     }
 
-    bindDeleteTask(globalTasks, handler) {
+    bindDeleteTask(globalTasks1, handler) {
 
         let deleteCounterDaily = 0;
         let deleteCounterGlobal = 0;
@@ -134,41 +175,53 @@ export class View {
             //     document.querySelector('.icon-trash__items').innerHTML = counterDaily + counterGlobal
             //     deletedList.push(tasksList.find(item => item.id == e.target.closest('.task-list__item').dataset.id))
             // }
-
+            (async () => {
+                let globalTask = await db.getTasksListData(); 
+                if(globalTask){
+                    let globalTasks = globalTask.items;
             if (e.target.dataset.isremove === 'false') {
-                let all = document.querySelectorAll('[data-isremove]');
-                all.forEach(item => item.dataset.isremove = 'true')
+               
+                        // const dailyList = globalTasks.filter(item => item.status.DAILY_LIST === true && item.status.COMPLETED === false)
 
-                // e.target.dataset.isremove = 'true';
-                e.target.closest('#root').querySelectorAll('.sub-menu__item.hidden').forEach(item => item.classList.remove('hidden'));
+                        // document.querySelector('.task-list__wrapper').innerHTML = templateTask(dailyList);
+        
+                        let all = document.querySelectorAll('[data-isremove]');
+                        all.forEach(item => item.dataset.isremove = 'true')
+        
+                        // e.target.dataset.isremove = 'true';
+                        e.target.closest('#root').querySelectorAll('.sub-menu__item.hidden').forEach(item => item.classList.remove('hidden'));
+        
+                        document.querySelector('.icon-trash__items').classList.remove('hidden');
+                        document.querySelector('.move-first-task').classList.add('hidden');
+                        document.querySelector('.task-list__wrapper').classList.remove('hidden');
+                        document.querySelector('.sub-menu-v-hidden-mobile').classList.remove('hidden');
+        
+                        const dailyList = globalTasks.filter(item => item.status.DAILY_LIST === true && item.status.COMPLETED === false)
+                        const globalTasksList = globalTasks.filter(item => item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
+                        const globalListCategory = globalTasksList.map(itemY => { return itemY.category; });
+                        const globalListCategorized = API.filter(itemX => globalListCategory.includes(itemX.category));
+        
+                        globalListCategorized.forEach(item => {
+                            item.categoryTasks = []
+                        })
+        
+                        globalTasksList.map(item => {
+                            globalListCategorized.map(el => {
+                                if (item.category == el.category) {
+                                    el.categoryTasks.push(item);
+                                }
+                            })
+        
+                        });
+        
+                        document.querySelector('.task-list__wrapper').innerHTML = deleteDaily(dailyList);
+                        document.querySelector('.global-list__items').innerHTML = deleteGlobal(globalListCategorized)
+                    }
+                  
+                
+             
 
-                document.querySelector('.icon-trash__items').classList.remove('hidden');
-                document.querySelector('.move-first-task').classList.add('hidden');
-                document.querySelector('.task-list__wrapper').classList.remove('hidden');
-                document.querySelector('.sub-menu-v-hidden-mobile').classList.remove('hidden');
-
-                const dailyList = globalTasks.filter(item => item.status.DAILY_LIST === true && item.status.COMPLETED === false)
-                const globalTasksList = globalTasks.filter(item => item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
-                const globalListCategory = globalTasksList.map(itemY => { return itemY.category; });
-                const globalListCategorized = API.filter(itemX => globalListCategory.includes(itemX.category));
-
-                globalListCategorized.forEach(item => {
-                    item.categoryTasks = []
-                })
-
-                globalTasksList.map(item => {
-                    globalListCategorized.map(el => {
-                        if (item.category == el.category) {
-                            el.categoryTasks.push(item);
-                        }
-                    })
-
-                });
-
-                document.querySelector('.task-list__wrapper').innerHTML = deleteDaily(dailyList);
-                document.querySelector('.global-list__items').innerHTML = deleteGlobal(globalListCategorized)
-
-            }
+         
             else if (e.target.dataset.isremove === 'true') {
                 // document.querySelector('[data-isremove]').dataset.isremove = 'false';
                 // e.target.dataset.isremove = 'false';
@@ -243,12 +296,22 @@ export class View {
                     const deletedTaskId = deleteTasks.map(itemY => { return itemY.id; });
                     const itemToDelete = getDbTasks.filter(itemX => deletedTaskId.includes(itemX.id));
                     itemToDelete.forEach(item => db.deleteTask(item));
+                    console.log()
 
                     const updatedTasksList = getDbTasks.filter(item => !itemToDelete.includes(item))
                     const dailyList = updatedTasksList.filter(item => item.status.DAILY_LIST === true && item.status.COMPLETED === false)
 
                     document.querySelector('.task-list__wrapper').innerHTML = templateTask(dailyList);
-                    handler(updatedTasksList)
+                    handler(updatedTasksList);
+
+                    const alertOk = document.querySelector('.alert-msg-ok');
+                    alertOk.classList.remove('hidden');
+                    document.querySelector('.alert-msg-ok .alert-msg__text')
+                        .textContent = 'Your task was successfully removed';
+    
+                    setTimeout(()=>{
+                        alertOk.classList.add('hidden');
+                    },3000)
                 }
 
                 tasksList()
@@ -351,21 +414,41 @@ export class View {
                 const globalListDeselectAll = e.target.closest('.global-list').querySelectorAll('.task-list__wrapper .date-icon');
                 globalListDeselectAll.forEach(item => item.className = 'date-icon global-task__icon-trash task-list__icon-trash icon-trash');
             }
+        } })()
         })
+   
     }
 
     bindMoveToTasksList(tasksList, handler) {
+       
         this.taskList.addEventListener('click', event => {
             if (event.target.closest('.task-list__btns-arrows-up')) {
-                document.querySelector('.move-first-task').classList.add('hidden');
-                document.querySelector('.task-list__wrapper').classList.remove('hidden');
+                (async () =>{
+                    const tasks = await db.getTasksListData();
+                    if(tasks){
+                        console.log(tasks.items);
+                        document.querySelector('.move-first-task').classList.add('hidden');
+                        document.querySelector('.task-list__wrapper').classList.remove('hidden');
+        
+                        const movedTaskId = event.target.closest('.task-list__item').dataset.id
+                        const movedTask = tasks.items.find(item => item.id == movedTaskId)
+                        movedTask.status.GLOBAL_LIST = false;
+                        movedTask.status.DAILY_LIST = true;
 
-                const movedTaskId = event.target.closest('.task-list__item').dataset.id
-                const movedTask = tasksList.find(item => item.id == movedTaskId)
-                movedTask.status.GLOBAL_LIST = false;
-                movedTask.status.DAILY_LIST = true;
-
-                handler(movedTask);
+                        const alertInfo = document.querySelector('.alert-msg-info');
+                        alertInfo.classList.remove('hidden');
+                        document.querySelector('.alert-msg-info .alert-msg__text')
+                            .textContent = 'You task was moved to the daily task list';
+            
+                        setTimeout(()=>{
+                          alertInfo.classList.add('hidden');
+                        },3000)
+        
+                        handler(movedTask,tasks.items);
+                    }
+                  
+                })()
+               
             }
         })
     }
@@ -410,7 +493,7 @@ export class View {
                         document.querySelector('.task__title-value').value = editedItem.title;
                         document.querySelector('.task__description-value').value = editedItem.description;
                         document.querySelector(`input[value='${editedItem.category}']`).checked = true;
-                        document.querySelector('.task__date').value = `${editedItem.createDate.year}-${editedItem.createDate.monthNumber}-${editedItem.createDate.day}`;
+                        document.querySelector('.task__date').value = `${editedItem.createDate.monthNumber}/${editedItem.createDate.day}/${editedItem.createDate.year}`;
                         document.querySelector(`input[value='${editedItem.estimation}']`).checked = true;
                         document.querySelector(`input[data-priority=${editedItem.priority.name}]`).checked = true;
                         document.querySelectorAll('.global-list__item').forEach(item => item.style.zIndex = 0)
@@ -434,6 +517,15 @@ export class View {
                 editedItem.priority.value = document.querySelector('input[name="add-task1-radio"]:checked').value;
                 editedItem.priority.name = document.querySelector('input[name="add-task1-radio"]:checked').dataset.priority;
                 editedItem.deadlineDate = document.querySelector('.task__date').value;
+
+                const formatter = new Intl.DateTimeFormat('us', { month: 'short' });
+                const month = formatter.format(new Date(document.querySelector('.task__date').value));
+
+                editedItem.createDate.day = document.querySelector('.task__date').value.slice(3,5);
+                editedItem.createDate.month = month;
+                editedItem.createDate.year = document.querySelector('.task__date').value.slice(6,10);
+                editedItem.createDate.monthNumber = document.querySelector('.task__date').value.slice(0,2);
+                  
                 // const editedId = document.querySelector('.add-edit-task__wrapper').dataset.id;
                 // const createdDate = document.querySelector('.task__date').value;
                 // const date = new Date(createdDate);
@@ -468,6 +560,14 @@ export class View {
                 //     createDate.year = year;
                 //     createDate.monthNumber = monthNumber;
                 // }
+                const alertOk = document.querySelector('.alert-msg-ok');
+                alertOk.classList.remove('hidden');
+                document.querySelector('.alert-msg-ok .alert-msg__text')
+                    .textContent = 'Your task was successfully saved';
+
+                setTimeout(()=>{
+                    alertOk.classList.add('hidden');
+                },3000)
 
                 handler(
                     editedItem
@@ -503,104 +603,131 @@ export class View {
         })
     }
 
-    bindFilterTasks(tasksList, handler) {
+    bindFilterTasks(tasksList1, handler) {
         this.taskList.addEventListener('click', (e) => {
-            const dailyListFilter = (item, isCompleted, template, e) => {
-                e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
-                e.target.closest(`.sub-menu__link-${item}`).classList.add('active');
+            (async () => {
+                const tasksLis = await db.getTasksListData();
+                if(tasksLis){
+                    const tasksList = tasksLis.items;
+                    const dailyListFilter = (item, isCompleted, template, e) => {
+                        e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
+                        e.target.closest(`.sub-menu__link-${item}`).classList.add('active');
+    
+                        const filteredTask = tasksList.filter(item => item.status.DAILY_LIST === true && item.status.COMPLETED === isCompleted)
+    
+                        document.querySelector(".task-list__wrapper").innerHTML = template(filteredTask);
+                    };
+                    //not work
+                    // const globalListFilter = (item, handler, e, tasksList) => {
+                    //     e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
+                    //     e.target.closest(`.sub-menu__link-${item}`).classList.add('active');
+    
+                    //     const filteredTask = tasksList.filter(item => item.priority.name === `${item}` && item.status.GLOBAL_LIST === true && item.status.COMPLETED === false);
+    
+                    //     handler(filteredTask);
+                    // };
+    
+                    if (e.target.closest('.sub-menu__link-urgent')) {
+                        e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
+                        e.target.closest('.sub-menu__link-urgent').classList.add('active');
+    
+                        const filteredTask = tasksList.filter(item => item.priority.name === 'urgent' && item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
+    
+                        handler(filteredTask);
+                        // globalListFilter('urgent', handler, e, tasksList);
+                    }
+                    else if (e.target.closest('.sub-menu__link-high')) {
+                        e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
+                        e.target.closest('.sub-menu__link-high').classList.add('active');
+    
+                        const filteredTask = tasksList.filter(item => item.priority.name === 'high' && item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
+    
+                        handler(filteredTask);
+                        // globalListFilter('high', handler, e, tasksList);
+                    }
+                    else if (e.target.closest('.sub-menu__link-middle')) {
+                        e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
+                        e.target.closest('.sub-menu__link-middle').classList.add('active');
+    
+                        const filteredTask = tasksList.filter(item => item.priority.name === 'middle' && item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
+    
+                        handler(filteredTask);
+                        // globalListFilter('middle', handler, e, tasksList);
+                    }
+                    else if (e.target.closest('.sub-menu__link-low')) {
+                        e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
+                        e.target.closest('.sub-menu__link-low').classList.add('active');
+    
+                        const filteredTask = tasksList.filter(item => item.priority.name === 'low' && item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
+    
+                        handler(filteredTask);
+                        // globalListFilter('low', handler, e, tasksList);
+                    }
+                    else if (e.target.closest('.sub-menu__link-all')) {
+                        e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
+                        e.target.closest('.sub-menu__link-all').classList.add('active');
+    
+                        const filteredTask = tasksList.filter(item => item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
+    
+                        handler(filteredTask);
+                    }
+                    else if (e.target.closest('.sub-menu__link-done')) {
+                        dailyListFilter('done', true, templateDone, e);
+                    }
+    
+                    else if (e.target.closest('.sub-menu__link-todo')) {
+                        dailyListFilter('todo', false, templateTask, e);
+                    }
+                }
+                
+        
 
-                const filteredTask = tasksList.filter(item => item.status.DAILY_LIST === true && item.status.COMPLETED === isCompleted)
-
-                document.querySelector(".task-list__wrapper").innerHTML = template(filteredTask);
-            };
-
-            //not work
-            // const globalListFilter = (item, handler, e, tasksList) => {
-            //     e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
-            //     e.target.closest(`.sub-menu__link-${item}`).classList.add('active');
-
-            //     const filteredTask = tasksList.filter(item => item.priority.name === `${item}` && item.status.GLOBAL_LIST === true && item.status.COMPLETED === false);
-
-            //     handler(filteredTask);
-            // };
-
-            if (e.target.closest('.sub-menu__link-urgent')) {
-                e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
-                e.target.closest('.sub-menu__link-urgent').classList.add('active');
-
-                const filteredTask = tasksList.filter(item => item.priority.name === 'urgent' && item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
-
-                handler(filteredTask);
-                // globalListFilter('urgent', handler, e, tasksList);
-            }
-            else if (e.target.closest('.sub-menu__link-high')) {
-                e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
-                e.target.closest('.sub-menu__link-high').classList.add('active');
-
-                const filteredTask = tasksList.filter(item => item.priority.name === 'high' && item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
-
-                handler(filteredTask);
-                // globalListFilter('high', handler, e, tasksList);
-            }
-            else if (e.target.closest('.sub-menu__link-middle')) {
-                e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
-                e.target.closest('.sub-menu__link-middle').classList.add('active');
-
-                const filteredTask = tasksList.filter(item => item.priority.name === 'middle' && item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
-
-                handler(filteredTask);
-                // globalListFilter('middle', handler, e, tasksList);
-            }
-            else if (e.target.closest('.sub-menu__link-low')) {
-                e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
-                e.target.closest('.sub-menu__link-low').classList.add('active');
-
-                const filteredTask = tasksList.filter(item => item.priority.name === 'low' && item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
-
-                handler(filteredTask);
-                // globalListFilter('low', handler, e, tasksList);
-            }
-            else if (e.target.closest('.sub-menu__link-all')) {
-                e.target.closest('.sub-menu').querySelector('.active').classList.remove('active')
-                e.target.closest('.sub-menu__link-all').classList.add('active');
-
-                const filteredTask = tasksList.filter(item => item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
-
-                handler(filteredTask);
-            }
-            else if (e.target.closest('.sub-menu__link-done')) {
-                dailyListFilter('done', true, templateDone, e);
-            }
-
-            else if (e.target.closest('.sub-menu__link-todo')) {
-                dailyListFilter('todo', false, templateTask, e);
-            }
+           })()
         })
     }
 
-    bindStartTimerTask(tasksList, handler) {
-        const taskListHTML = document.querySelector('.task-list');
+    bindStartTimerTask(tasksList1, handler) {
+        // const taskListHTML = document.querySelector('.task-list');
+        //   (async () => {
+        //       console.log('start');
+        //         const tasksLis = await db.getTasksListData();
+        //         const tasksList = tasksLis.items;
 
         this.taskList.addEventListener('click', (e) => {
-            if (e.target.classList.contains('startTimerTask')) {
-                e.preventDefault();
-                let startedTaskId = e.target.closest('.task-list__item').dataset.id;
-                let startedTaskItem = tasksList.find(item => item.id === startedTaskId);
-
-                setTimeout(
-                    function () {
-                        // e.target.setAttribute('href', '/timer');
-                        window.location = "http://localhost:3000/timer";
-                    },
-                    500);
-
-
-                return handler(startedTaskItem)
-
-
-
-            }
+          
+             
+                    if (e.target.classList.contains('startTimerTask')) {
+                        e.preventDefault();
+                        let startedTaskId = e.target.closest('.task-list__item').dataset.id;
+                        
+                     
+                           console.log(startedTaskId);
+                            (async () => {
+                        console.log('start');
+                            const tasksLis = await db.getTasksListData();
+                            const tasksList = tasksLis.items;
+                        if(tasksList){
+                           
+                            console.log(tasksList);
+                            let startedTaskItem = tasksList.find(item => item.id === startedTaskId);
+                            console.log(startedTaskItem);
+                            setTimeout(
+                                function () {
+                                    // e.target.setAttribute('href', '/timer');
+                                    //  handler(startedTaskItem)
+                                    return window.location = "http://localhost:3000/timer";
+                                },
+                                500);
+                            return handler(startedTaskItem)
+        
+                        }
+                             })()
+                    }
+               
+         
+                
         })
+        //    })()
 
     }
 }

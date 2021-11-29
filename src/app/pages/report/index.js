@@ -21,3 +21,16 @@ async function getDbTasksList() {
         const app = new Controller(new Model(dbTasksList), new View())
     }
 })();
+// document.querySelector('.icon-settings').addEventListener('click', (e) => {
+//     e.preventDefault();
+//      window.history.replaceState({}, '', '/settings');
+// })
+// document.querySelector('.icon-list').addEventListener('click', (e) => {
+//     e.preventDefault();
+//      window.history.replaceState({}, '', '/task-list');
+// })
+// document.querySelector('.icon-statistics').addEventListener('click', (e) => {
+//     e.preventDefault();
+//      window.history.replaceState({}, '', '/report');
+// })
+

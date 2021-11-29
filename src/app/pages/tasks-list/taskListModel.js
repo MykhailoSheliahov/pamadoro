@@ -7,8 +7,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 export class Model {
 
-    constructor() {
-        this.tasksList = db.getAllData() || []
+    constructor(a) {
+        this.tasksList = a
+        // this.tasksList = db.getAllData() || [],
+        // this.items = a,
+        // console.log('1111', this.tasksList);
+        // console.log('2', this.items)
     }
 
     _commit(tasks) {
@@ -53,18 +57,39 @@ export class Model {
         )
 
         const dailyList = this.tasksList.filter(item => item.status.DAILY_LIST === true && item.status.COMPLETED === false)
+        dailyList.sort(
+            function(a, b) { 
+                if(a.createDate.year === b.createDate.year){
+                    if (a.createDate.monthNumber === b.createDate.monthNumber) {
+                        return parseInt(a.createDate.day) - parseInt(b.createDate.day);
+                     }
+                  return  a.createDate.monthNumber > b.createDate.monthNumber ? 1 : -1;
+                }
+                return  a.createDate.year > b.createDate.year ? 1 : -1;
+            });
 
         db.updateTask(task);
+        this._commit(this.tasksList)
         document.querySelector(".task-list__wrapper").innerHTML = templateTask(dailyList);
     }
 
+    moveToTasksList(task,tasks) {
 
-    moveToTasksList(task) {
         db.updateTask(task);
+        this.tasksList = tasks;
 
-        const dailyTasks = this.tasksList.filter(item => item.status.DAILY_LIST === true && item.status.COMPLETED === false)
-        const globalTasks = this.tasksList.filter(item => item.status.GLOBAL_LIST === true && item.status.COMPLETED === false)
-
+        const dailyTasks = tasks.filter(item => item.status.DAILY_LIST === true && item.status.COMPLETED === false);
+        dailyTasks.sort(
+            function(a, b) { 
+                if(a.createDate.year === b.createDate.year){
+                    if (a.createDate.monthNumber === b.createDate.monthNumber) {
+                        return parseInt(a.createDate.day) - parseInt(b.createDate.day);
+                     }
+                  return  a.createDate.monthNumber > b.createDate.monthNumber ? 1 : -1;
+                }
+                return  a.createDate.year > b.createDate.year ? 1 : -1;
+            });
+        const globalTasks = tasks.filter(item => item.status.GLOBAL_LIST === true && item.status.COMPLETED === false);
         document.querySelector(".task-list__wrapper").innerHTML = templateTask(dailyTasks);
         this._commit(globalTasks)
     }
@@ -86,7 +111,6 @@ export class Model {
         //     }
         //     return task;
         // });
-
         db.updateTask(task);
 
         // alert('rewrw');

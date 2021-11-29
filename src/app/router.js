@@ -70,12 +70,18 @@ const isNewUser = sessionStorage.getItem('isNewUser');
 
 if (isNewUser) {
     Router
-        .add('/settings', () => {
+    .add('/settings', () => {
+
+        console.log('4453')
+
+           require ('./components/header/header');
+           require('./pages/settings');
+           require('./components/cycleGraph/cycleGraph');
+         
+       
 
 
-
-        })
-
+       })
         .add('/report', () => {
 
             require('./pages/report');
@@ -83,6 +89,7 @@ if (isNewUser) {
             // report.showDayTasks();
             // report.showWeekTasks();
         })
+      
         .add('/report/week/tasks', () => {
             alert('6546');
             // require('./pages/report');
@@ -117,6 +124,7 @@ else {
 
 
 window.addEventListener('DOMContentLoaded', () => {
+ 
     const curUrl = window.location.pathname;
 
     Router.check(curUrl).listen();

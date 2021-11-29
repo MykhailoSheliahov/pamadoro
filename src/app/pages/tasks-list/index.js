@@ -17,6 +17,8 @@ export const API = [
 
 async function getDbTasksList() {
     const getDbTasks = await db.getTasksListData();
+    if(getDbTasks){
+        console.log('getTasksListData',getDbTasks);}
     return getDbTasks;
 
 }
@@ -27,7 +29,17 @@ async function getDbTasksList() {
 
 
     const globalList = dbTasks.filter(({ status }) => status.GLOBAL_LIST && !status.COMPLETED)
-    const dailyList = dbTasks.filter(({ status }) => status.DAILY_LIST && !status.COMPLETED)
+    const dailyList = dbTasks.filter(({ status }) => status.DAILY_LIST && !status.COMPLETED);
+    dailyList.sort(
+        function(a, b) { 
+            if(a.createDate.year === b.createDate.year){
+                if (a.createDate.monthNumber === b.createDate.monthNumber) {
+                    return parseInt(a.createDate.day) - parseInt(b.createDate.day);
+                 }
+              return  a.createDate.monthNumber > b.createDate.monthNumber ? 1 : -1;
+            }
+            return  a.createDate.year > b.createDate.year ? 1 : -1;
+        });
 
     const globalListCategory = globalList.map(({ category }) => category);
     const globalListCategorized = API.filter(({ category }) => globalListCategory.includes(category));
@@ -54,10 +66,26 @@ async function getDbTasksList() {
         document.querySelector('.icon-trash').classList.remove("hidden");
         document.querySelector('.task-list__wrapper').classList.remove("hidden");
         document.querySelector(".task-list__wrapper").innerHTML = templateTask(dailyList);
+
+
     }
+    const app = new Controller(new Model(dbTasks), new View())
 })();
 
+// document.querySelector('.icon-settings').addEventListener('click', (e) => {
+//     e.preventDefault();
+//      window.history.replaceState({}, '', '/settings');
+// })
+// document.querySelector('.icon-list').addEventListener('click', (e) => {
+//     e.preventDefault();
+//      window.history.replaceState({}, '', '/task-list');
+// })
+// document.querySelector('.icon-statistics').addEventListener('click', (e) => {
+//     e.preventDefault();
+//      window.history.replaceState({}, '', '/report');
+// })
 
 
 
-const app = new Controller(new Model(), new View())
+
+

@@ -9,12 +9,15 @@
     <ul class="menu">
         <li class="menu__item">
             <a href="/task-list" class="menu__link icon-list"></a>
+            {{!-- <a href="#" class="menu__link icon-list"></a> --}}
         </li>
         <li class="menu__item">
             <a href="/report" class="menu__link icon-statistics"></a>
+              {{!-- <a href="#" class="menu__link icon-statistics"></a> --}}
         </li>
         <li class="menu__item">
             <a href="/settings" class="menu__link icon-settings active"></a>
+              {{!-- <a href="#" class="menu__link icon-settings active"></a> --}}
         </li>
     </ul>
 </div>
@@ -85,7 +88,7 @@
                                 <div id="voter" class="pomodoros__input voter4">
                                     <span class="icon-minus work-time__minus-step-value down"></span>
                                     <input class="work-time vote vote4" type="number" data-step="5" min="15"
-                                        max="25">
+                                        max="60">
                                     <span class="icon-add work-time__add-step-value up"></span>
                                 </div>
                             </div>
@@ -117,7 +120,7 @@
                                 </span>
                                 <div id="voter2" class="pomodoros__input ">
                                     <span class="icon-minus  short-break__minus-step-value down"></span>
-                                    <input class="short-break vote2" type="number" data-step="1" min="3" max="5">
+                                    <input class="short-break vote2" type="number" data-step="1" min="3" max="10">
                                     <span class="icon-add short-break__add-step-value up"></span>
                                 </div>
                             </div>
@@ -152,11 +155,24 @@
                     <div class="pomodoros__cycle-graph"></div>
                     <div class="pomodoros__cycle-graph-down-row"></div>
                     <div class="pomodoros__btns">
-                        <a href="/task-list" class="btn btn--primary">{{subMenu.linkPomodoros.buttons.btnPrimary}}</a>
-                        <a href="/task-list" class="btn btn--secondary">{{subMenu.linkPomodoros.buttons.btnSecondary}}</a>
+                        <a href="#" class="btn btn--primary">{{subMenu.linkPomodoros.buttons.btnPrimary}}</a>
+                        <a href="#" class="btn btn--secondary">{{subMenu.linkPomodoros.buttons.btnSecondary}}</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<section class="alert-msg__wrapper alert-msg-ok hidden">
+    <section class="alert-msg-content ">
+      <div class="alert-msg__item alert-ok">
+        <span class="alert-msg__icon icon-tomato-success alert-ok"></span>
+        <div class="alert-msg__data">
+          <p class="alert-msg__text">Task was successfully created.</p>
+          <span class="alert-msg-close icon-close"></span>
+        </div>
+      </div>
+    </section>
+  </section>
+

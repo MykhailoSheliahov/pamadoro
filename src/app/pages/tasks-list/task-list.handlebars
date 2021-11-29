@@ -135,7 +135,7 @@
               <div class="task-list__btns">
                 <a href="#" class="icon-arrows-up task-list__btns-arrows-up"></a>
                 <a href="#" class="icon-edit task-list__btns-edit"></a>
-                <a href="#" class="icon-trash task-list__btns-trash"></a>
+                <a href="#" class="icon-trash task-list__btns-trash" data-isremove="false"></a>
               </div>
             </div>
             <div class="task-list__estimation icon-tomato ">
@@ -168,12 +168,12 @@
           
           <div class="task__item ">
             <span class="task__title">Title</span>
-              <input type="text" class="task_value task__title-value" placeholder="Add tittle here" required>
+              <input type="text" class="task_value task__title-value" placeholder="Add tittle here" required='true'>
           </div>
     
           <div class="task__item ">
             <span class="task__title">Description</span>
-              <input type="text" class="task_value task__description-value" placeholder="Add description here" required>
+              <input type="text" class="task_value task__description-value" placeholder="Add description here" required='true'>
           </div>
     
           <div class="task__item ">        
@@ -226,7 +226,7 @@
     
           <div class="task__item ">
             <span class="task__title">Deadline</span>
-              <input type="date" class="task__date task_value" placeholder="May 23, 2021" required>
+              <input type="text" id='datepicker' class="task__date task_value" placeholder="May 23, 2021" required readonly>
           </div>
           <div class="task__item ">
             <span class="task__title">Estimation</span>
@@ -313,6 +313,42 @@
         <div class="pomodoros__btns first-entrance-2__btns">
           <a href="#" class="btn btn--primary cancel-remove">Cancel</a>
           <a href="#" class="btn btn--third remove-task">Remove</a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="alert-msg__wrapper alert-msg-err  hidden">
+    <section class="alert-msg-content ">
+      <div class="alert-msg__item alert-err">
+        <span class="alert-msg__icon icon-tomato-error alert-err"></span>
+        <div class="alert-msg__data ">
+          <p class="alert-msg__text">Oops! Fill out all fields</p>
+          <span class="alert-msg-close icon-close"></span>
+        </div>
+      </div>
+    </section>
+  </section>
+  
+   <section class="alert-msg__wrapper alert-msg-ok hidden">
+    <section class="alert-msg-content ">
+      <div class="alert-msg__item alert-ok">
+        <span class="alert-msg__icon icon-tomato-success alert-ok"></span>
+        <div class="alert-msg__data">
+          <p class="alert-msg__text">Task was successfully created</p>
+          <span class="alert-msg-close icon-close"></span>
+        </div>
+      </div>
+    </section>
+  </section>
+
+   <section class="alert-msg__wrapper alert-msg-info  hidden">
+    <section class="alert-msg-content ">
+      <div class="alert-msg__item alert-info">
+        <span class="alert-msg__icon icon-tomato-info alert-info"></span>
+        <div class="alert-msg__data">
+          <p class="alert-msg__text">This is just an info notification message!</p>
+          <span class="alert-msg-close icon-close"></span>
         </div>
       </div>
     </section>

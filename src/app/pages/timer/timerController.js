@@ -11,6 +11,8 @@ export class Controller {
         this.view.bindFinishPomodora(this.handleFinishPomodora, this.model.tasksSettings, this.model.finishedPomodora)
         this.view.bindFinishTask(this.handleFinishTask)
         this.view.bindAddTomato()
+        this.view.bindPauseTimer()
+        this.view.bindResumeTimer()
     }
 
     handleBackToGlobalList = task => {

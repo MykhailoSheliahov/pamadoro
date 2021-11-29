@@ -7,6 +7,8 @@ const { db } = require("../../db");
 
 document.querySelector("#root").innerHTML = template(timerApi);
 document.querySelector('.timer__icon-arrow-left').classList.remove('v-hidden');
+// document.querySelector('.time-circle').style.borderColor = 'red';
+
 
 async function getDbTasksList() {
     const getDbTasks = await db.getTasksListData();
@@ -15,7 +17,7 @@ async function getDbTasksList() {
 }
 
 async function getDbSettings() {
-    const getDbTasks = await db.getTasksListData2();
+    const getDbTasks = await db.getSettingsData2();
 
     return getDbTasks;
 }
@@ -25,6 +27,20 @@ async function getDbSettings() {
     const dbSettings = await getDbSettings();
 
     if (dbTaskList && dbSettings) {
+        // console.log(dbTaskList);
+        // const activeTask = dbTaskList.items.find(item => item.status.ACTIVE === true);
+        // const taskColor = [
+        //     {name:"urgent",color:'red'},
+        //     {name:"high",color:'yellow'},
+        //     {name:"middle",color:'blue'},
+        //     {name:"low",color:'green'},
+
+        // ]
+        
+        // const color = taskColor.find(item=> item.name.includes(activeTask.priority.name))
+        // console.log(color)
+
+        // document.querySelector('.time-circle').style.borderColor = color.color;
         const app = new Controller(new Model(dbTaskList, dbSettings), new View());
     }
 })()

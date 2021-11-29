@@ -17,6 +17,21 @@ class DB {
     }
 
     setSettingsData() {
+        firebase.database().ref('defaulSsettings').set({
+            workTime: document.querySelector('.work-time').value,
+            workIteration: document.querySelector('.work-iteration').value,
+            shortBreak: document.querySelector('.short-break').value,
+            longBreak: document.querySelector('.long-break').value,
+        }, (error) => {
+            if (error) {
+                console.log('Error! Can\'t  set data');
+            } else {
+                console.log('Data saved successfully!');
+            }
+        });
+    }
+
+    setSettingsData2() {
         firebase.database().ref('settings').set({
             workTime: document.querySelector('.work-time').value,
             workIteration: document.querySelector('.work-iteration').value,
@@ -31,36 +46,73 @@ class DB {
         });
     }
 
-    getDbSettingsData() {
-        const dbRef = firebase.database().ref();
-        dbRef.child("settings").get().then((props) => {
-            if (props.exists()) {
-                // console.log(props.val().shortBreak);
-                return {
-                    workTime: props.val().workTime,
-                    workIteration: props.val().workIteration,
-                    shortBreak: props.val().shortBreak,
-                    longBreak: props.val().longBreak
-
-                }
+    setUserIterationData(item) {
+        firebase.database().ref('userIteration').set({
+            userIteration: item,
+           
+        }, (error) => {
+            if (error) {
+                console.log('Error! Can\'t  set data');
             } else {
-                console.log("Error! No data available");
+                console.log('Data saved successfully!');
             }
-        }).catch((error) => {
-            console.error(error);
         });
-
     }
+
+    getUserIterationData() {
+        const dbRef = firebase.database().ref();
+        return new Promise(function (resolve) {
+           
+
+                    dbRef.child("userIteration").get().then((props) => {
+                        if (props.exists()) {
+                            resolve({
+                                userIteration: props.val().userIteration,
+                             })
+                           
+                        }
+                    })
+
+               
+        })
+
+     
+    }
+
+    // getDbSettingsData() {
+    //     const dbRef = firebase.database().ref();
+    //     dbRef.child("settings").get().then((props) => {
+    //         if (props.exists()) {
+    //             // console.log(props.val().shortBreak);
+    //             return {
+    //                 workTime: props.val().workTime,
+    //                 workIteration: props.val().workIteration,
+    //                 shortBreak: props.val().shortBreak,
+    //                 longBreak: props.val().longBreak
+
+    //             }
+    //         } else {
+    //             console.log("Error! No data available");
+    //         }
+    //     }).catch((error) => {
+    //         console.error(error);
+    //     });
+
+    // }
 
     getSettingsData(workTime, workIteration, shortBreak, longBreak) {
         const dbRef = firebase.database().ref();
         dbRef.child("settings").get().then((props) => {
             if (props.exists()) {
-                workTime.value = props.val().workTime;
-                workIteration.value = props.val().workIteration;
-                shortBreak.value = props.val().shortBreak;
-                longBreak.value = props.val().longBreak;
+              
+                    workTime.value= props.val().workTime;
+                    workIteration.value =  props.val().workIteration;
+                    shortBreak.value = props.val().shortBreak;
+                    longBreak.value = props.val().longBreak;
+                
+               
                 showCircle();
+               
             } else {
                 console.log("Error! No data available");
             }
@@ -69,8 +121,31 @@ class DB {
         });
     }
 
-    setTasksListData(props) {
+    getSettingsData3() {
+        const dbRef = firebase.database().ref();
+        return new Promise(function (resolve) {
+           
+                    dbRef.child("settings").get().then((props) => {
+                        if (props.exists()) {
+                            resolve({
+                                workTime: props.val().workTime,
+                                workIteration: props.val().workIteration,
+                                shortBreak: props.val().shortBreak,
+                                longBreak: props.val().longBreak
+                              
+                             })
+                           
+                        }
+                    })
 
+               
+        })
+
+     
+    }
+
+    //add task via menu add task
+    setTasksListData(props) {
         firebase.database().ref('tasksList').push().set(props
             // id: props.id,
             // title: props.title,
@@ -99,12 +174,10 @@ class DB {
             // completedDate: props.completedDate
             , (error) => {
                 const message = error ? 'Error! Can\'t set data' : 'Data saved successfully!';
-
                 console.log(message);
-
             });
     }
-
+//return items and key like 2 diff properte use in undex view 3 times only
     getTasksListData() {
         const items = [];
         const keys = [];
@@ -125,20 +198,18 @@ class DB {
                 }).catch(err => console.log(err));
         })
     }
-    getTasksListData2() {
 
-        const keys = [];
+    getSettingsData2() {
+        // const keys = [];
         return new Promise(function (resolve) {
             firebase.database().ref('settings')
                 .once('value')
                 .then(function (snapshot) {
-
                     resolve(snapshot.val())
-
                 }).catch(err => console.log(err));
         })
     }
-
+    //key not need only id
     updateTask(props) {
         const db = firebase.database();
         db.ref('tasksList').orderByChild('id').equalTo(props.id)
@@ -175,44 +246,45 @@ class DB {
                 )
             });
     }
-
+    
+    //for deleting we need key property 
     deleteTask(props) {
         const db = firebase.database();
-
-        db.ref("tasksList").child(props.key).remove();
+        db.ref("tasksList").child(props.key).remove();      
     }
 
+    // getAllWithKeys() {
+    //     const dbRef = firebase.database().ref('tasksList');
+    //     const items = [];
+    //     return new Promise(function (resolve) {
+    //         dbRef.once("value")
+    //             .then(function (snapshot) {
 
-    getAllWithKeys() {
-        const dbRef = firebase.database().ref('tasksList');
-        const items = [];
-        return new Promise(function (resolve) {
-            dbRef.once("value")
-                .then(function (snapshot) {
+    //                 snapshot.forEach(function (childSnapshot) {
+    //                     const childData = childSnapshot.val();
+    //                     items.push(childData);
+    //                 })
+    //             })
+    //         resolve(items);
+    //     })
+    // }
+    
+    
+    //just data without keys
+    // getAllData() {
+    //     const dbRef = firebase.database().ref('tasksList');
+    //     const items = [];
 
-                    snapshot.forEach(function (childSnapshot) {
-                        const childData = childSnapshot.val();
-                        items.push(childData);
-                    })
-                })
-            resolve(items);
-        })
-    }
+    //     dbRef.once("value")
+    //         .then(function (snapshot) {
 
-    getAllData() {
-        const dbRef = firebase.database().ref('tasksList');
-        const items = [];
-
-        dbRef.once("value")
-            .then(function (snapshot) {
-
-                snapshot.forEach(function (childSnapshot) {
-                    const childData = childSnapshot.val();
-                    items.push(childData);
-                })
-            })
-        return items;
-    }
+    //             snapshot.forEach(function (childSnapshot) {
+    //                 const childData = childSnapshot.val();
+    //                 items.push(childData);
+    //             })
+    //         })
+    //     return items;
+    // }
 }
 
 export const db = new DB();

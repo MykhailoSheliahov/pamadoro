@@ -20,8 +20,8 @@ export class Controller {
         this.model.editTask(task)
     }
 
-    handleMoveToTasksList = task => {
-        this.model.moveToTasksList(task)
+    handleMoveToTasksList = (task,tasks) => {
+        this.model.moveToTasksList(task,tasks)
     }
 
     handleDeleteTask = tasks => {

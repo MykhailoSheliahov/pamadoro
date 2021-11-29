@@ -34,9 +34,10 @@
     margin-top: 4.8rem;
     .sub-menu {
         align-self: flex-end;
-        &__link:hover,
-        &__link:focus,
-        &__link:active {
+        &__link:hover
+        // &__link:focus,
+        // &__link:active 
+        {
             color: @link_btns_color_hover_focus_pressed;
         }
     }
@@ -346,6 +347,9 @@
 .short-break-cycle {
     background-color: @category_education;
 }
+.short-break-cycle:last-child {
+    display: none;
+}
 .long-break-cycle {
     background-color: @category_hobby;
 }
@@ -404,6 +408,9 @@
 .long-break-down::before {
     right: 50%;
 }
+.long-break-down{
+    display: none;
+}
 .short-break-down:last-child::before,
 .short-break-down:last-child::after {
     content: "";
@@ -444,6 +451,7 @@
 }
 .pomodoros__cycle-graph-top-row .long-break-up::after {
     .cycleCircleUp(@category_other);
+    right: -10px;
 }
 .pomodoros__cycle-graph-top-row .short-break-up:last-child::before {
     content: attr(data-text);
@@ -456,6 +464,9 @@
 .pomodoros__cycle-graph-top-row .short-break-up:last-child::after {
     .cycleCircleUp(@category_other);
     visibility: visible;
+}
+.short-break-down{
+    display: none;
 }
 @media all and (max-width: 768px) {
     .pomodoros__cycle-graph-down-row .short-break-down:nth-of-type(4n + 2) {

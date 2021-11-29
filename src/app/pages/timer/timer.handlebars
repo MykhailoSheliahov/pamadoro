@@ -1,4 +1,4 @@
-<div class="timer__header task-list__header sticky">
+<div class="timer__header task-list__header sticky v-hidden">
     <h1 class="heading-primary ">
         
     </h1>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="time-circle-inside__text">
                         <span class="time-circle__text-2">You</span>
-                        <span class="time-circle__text-2">Completed</span>
+                        <span class="time-circle__text-2 text-2-status">Completed</span>
                         <span class="time-circle__text-2">Task</span>
                     </div>
                 </div>
@@ -104,6 +104,9 @@
     <div class=" timer__btns pomodoros__btns pomodoros__btns-2  pomodoros__btns-2-finish-st">
         
         <a href="#" class="btn btn--secondary start-task">{{buttons.btnSecondary}}</a> 
+        <a href="#" class="btn btn--secondary pause-task hidden">Pause</a> 
+        <a href="#" class="btn btn--secondary resume-task hidden">Resume</a> 
+    
 
         <a href="#" class="btn btn--third  fail-pomodora hidden">Fail Pomodora</a>
         <a href="#" class="btn btn--secondary finish-pomodora hidden">Finish Pomodora</a> 
@@ -111,8 +114,69 @@
         <a href="#" class="btn btn--secondary start-pomodora hidden">Start Pomodora</a> 
         <a href="#" class="btn btn--primary finish-task hidden ">Finish Task</a> 
 
-     
-        
-        
+    
     </div>
+
+    
+    <div class="hidden">
+        <audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" data-sound="red"></audio>
+        <audio src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3" data-sound="green"></audio>
+        <audio src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" data-sound="yellow"></audio>
+        <audio src="https://www.epidemicsound.com/track/jCxzl5diLz/?_us=adwords&_usx=11304476389_&gclid=CjwKCAiAp8iMBhAqEiwAJb94z0i6dsLJrGk-tmuoBJ-nWbDz8-wTRbyBL4gHOai4WNjfQ7eyg9kTohoCNpIQAvD_BwE" data-sound="first"></audio>
+        <audio src="./../../../assets/audio/mixkit-classic-short-alarm-993.wav" data-sound="second"></audio>
+        <audio src="./../../../assets/audio/mixkit-warning-alarm-buzzer-991.wav" data-sound="third"></audio>
+    </div>
+
 </section>
+
+ <!-- message notification delete hidden-->
+  <section class="alert-msg__wrapper alert-msg-info  hidden">
+    <section class="alert-msg-content ">
+      <div class="alert-msg__item alert-info">
+        <span class="alert-msg__icon icon-tomato-info alert-info"></span>
+        <div class="alert-msg__data">
+          <p class="alert-msg__text">This is just an info notification message!</p>
+          <span class="alert-msg-close icon-close"></span>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- message notification delete hidden-->
+  <section class="alert-msg__wrapper alert-msg-err  hidden">
+    <section class="alert-msg-content ">
+      <div class="alert-msg__item alert-err">
+        <span class="alert-msg__icon icon-tomato-error alert-err"></span>
+        <div class="alert-msg__data ">
+          <p class="alert-msg__text">Oops! An error has occured.</p>
+          <span class="alert-msg-close icon-close"></span>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- message notification delete hidden-->
+  <section class="alert-msg__wrapper alert-msg-ok hidden">
+    <section class="alert-msg-content ">
+      <div class="alert-msg__item alert-ok">
+        <span class="alert-msg__icon icon-tomato-success alert-ok"></span>
+        <div class="alert-msg__data">
+          <p class="alert-msg__text">Task was successfully created.</p>
+          <span class="alert-msg-close icon-close"></span>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- message notification delete hidden-->
+  <section class="alert-msg__wrapper alert-msg-warn hidden">
+    <section class="alert-msg-content ">
+      <div class="alert-msg__item alert-warn">
+        <span class="alert-msg__icon icon-tomato-warning alert-warn"></span>
+        <div class="alert-msg__data">
+          <p class="alert-msg__text">This is just a warning message.</p>
+          <span class="alert-msg-close icon-close"></span>
+        </div>
+      </div>
+    </section>
+  </section>

@@ -1,7 +1,43 @@
 const template = require("./settings.handlebars");
-import { settingsApi } from './settings'
+import { showCircle } from '../../components/cycleGraph/cycleGraph';
+import { db } from '../../db';
+import { settingsApi } from './settings';
+
 
 document.querySelector("#root").innerHTML = template(settingsApi);
+
+// document.addEventListener("DOMContentLoaded", function () {
+    // const workTimeElInput = document.querySelector('.work-time');
+    // const workIterationElInput = document.querySelector('.work-iteration');
+    // const shortBreakElInput = document.querySelector('.short-break');
+    // const longBreakElInput = document.querySelector('.long-break');
+
+    
+    // db.setSettingsData()
+    // db.getSettingsData(workTimeElInput, workIterationElInput, shortBreakElInput, longBreakElInput);
+    // showCircle();
+
+   
+    
+
+// });
+
+
+
+
+
+// document.querySelector('.icon-list').addEventListener('click', (e) => {
+//     e.preventDefault();
+//      window.history.replaceState({}, '', '/task-list');
+// })
+// document.querySelector('.icon-statistics').addEventListener('click', (e) => {
+//     e.preventDefault();
+//      window.history.replaceState({}, '', '/report');
+// })
+// document.querySelector('.icon-settings').addEventListener('click', (e) => {
+//     e.preventDefault();
+//      window.history.replaceState({}, '', '/settings');
+// })
 
 document.querySelector('.settings').addEventListener('click', (e) => {
 
@@ -26,3 +62,7 @@ document.querySelector('.settings').addEventListener('click', (e) => {
         window.history.replaceState({}, '', '/settings/pomodoros');
     }
 })
+
+// setTimeout(()=>{
+   
+//   },500)

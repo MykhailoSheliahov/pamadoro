@@ -10,6 +10,17 @@ export class Model {
 
         const activeTask = this.tasksList.find(item => item.status.ACTIVE === true);
         this.activeTask = activeTask;
+        // const taskColor = [
+        //     {name:"urgent",color:'red'},
+        //     {name:"high",color:'yellow'},
+        //     {name:"middle",color:'blue'},
+        //     {name:"low",color:'green'},
+
+        // ]
+        
+        // const color = taskColor.find(item=> item.name.includes(activeTask.priority.name))
+
+        // document.querySelector('.time-circle').style.borderColor = color.color;
     }
 
     backToGlobalList(task) {
@@ -22,6 +33,7 @@ export class Model {
     failPomodoro(task) {
         this.failedPomodora += task;
     }
+    
 
     finishPomodora(task) {
         this.finishedPomodora += task;
@@ -39,9 +51,11 @@ export class Model {
         this.activeTask.status.COMPLETED = true;
 
         if (totalPomodoros / 2 >= this.failedPomodora) {
-            console.log('task succesfull');
+            document.querySelector('.text-2-status').textContent = 'Completed';
+               console.log('task succesfull');
         } else {
             this.activeTask.failedTask = true;
+            document.querySelector('.text-2-status').textContent = 'Failed';
             console.log('task failed');
         }
 

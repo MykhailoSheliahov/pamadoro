@@ -7,7 +7,7 @@ export const settingsApi = {
             categories: {
                 categoryWork: {
                     title: 'Work time',
-                    text: 'Please select a value between 15 and 25',
+                    text: 'Please select a value between 15 and 60',
                     subText: 'minutes'
                 },
                 categoryIteration: {
@@ -17,7 +17,7 @@ export const settingsApi = {
                 },
                 categoryShortBreak: {
                     title: 'Short break',
-                    text: 'Please select a value between 3 and 5',
+                    text: 'Please select a value between 3 and 10',
                     subText: 'minutes'
                 },
                 categoryLongBreak: {

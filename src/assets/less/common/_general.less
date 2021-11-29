@@ -49,7 +49,7 @@ input[type="number"] {
     display: flex;
     font-family: @font_secondary, sans-serif;
     font-size: 2.2rem;
-    z-index: 1;
+    z-index: 0;
     &__item {
         &:first-child:before {
             .sub-menu__first-line-del();
@@ -58,9 +58,10 @@ input[type="number"] {
             .sub-menu__line-add();
         }
     }
-    &__link:hover,
-    &__link:focus,
-    &__link:active {
+    &__link:hover
+    // &__link:focus,
+    // &__link:active
+     {
         color: @link_btns_color_hover_focus_pressed;
     }
 }
