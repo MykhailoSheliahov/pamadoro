@@ -5,10 +5,10 @@ class DB {
     initialize() {
         const firebaseConfig = {
             apiKey: "AIzaSyDLk78tsQjINdiVtb-MmJ-h4jQhyPZVvjE",
-            authDomain: "pomodo-37753.firebaseapp.com",
-            databaseURL: "https://pomodo-37753-default-rtdb.firebaseio.com/",
-            projectId: "pomodo-37753",
-            storageBucket: "pomodo-37753.appspot.com",
+            authDomain: "pomo-51485.firebaseapp.com",
+            databaseURL: "https://pomo-51485-default-rtdb.firebaseio.com/",
+            projectId: "pomo-51485",
+            storageBucket: "pomo-51485.appspot.com",
             messagingSenderId: "1042859321426",
             appId: "1:1042859321426:web:27102fee8206e6c329d78b",
             measurementId: "G-Q8CHE9JBFW"
@@ -47,9 +47,21 @@ class DB {
     }
 
     setUserIterationData(item) {
-        firebase.database().ref('userIteration').set({
-            userIteration: item,
+        // firebase.database().ref('userIteration').set({
+        //     userIteration: item,
            
+        // }, (error) => {
+        //     if (error) {
+        //         console.log('Error! Can\'t  set data');
+        //     } else {
+        //         console.log('Data saved successfully!');
+        //     }
+        // });
+        firebase.database().ref('defaulSsettings').set({
+            workTime: 25,
+            workIteration:5,
+            shortBreak: 3,
+            longBreak: 30,
         }, (error) => {
             if (error) {
                 console.log('Error! Can\'t  set data');

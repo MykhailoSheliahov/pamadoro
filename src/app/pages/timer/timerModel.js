@@ -10,6 +10,12 @@ export class Model {
 
         const activeTask = this.tasksList.find(item => item.status.ACTIVE === true);
         this.activeTask = activeTask;
+        if(activeTask){
+            console.log(activeTask)
+            document.querySelector('.timer__heading').innerHTML = 'Title: ' + activeTask.title;
+            document.querySelector('.timer__text').innerHTML = 'Description: ' + activeTask.description;
+        }
+      
         // const taskColor = [
         //     {name:"urgent",color:'red'},
         //     {name:"high",color:'yellow'},
