@@ -46,6 +46,62 @@ class DB {
         });
     }
 
+    setPomodoroTime(time, iteration,counter) {
+        firebase.database().ref('PomodoroTime').set({
+            workTime: time,
+            workIteration: iteration,
+            counter:counter
+          
+        }, (error) => {
+            if (error) {
+                console.log('Error! Can\'t  set data');
+            } else {
+                console.log('Data saved successfully!');
+            }
+        });
+    }
+
+
+    getPomodoroTime() {
+        // const dbRef = firebase.database().ref();
+        // dbRef.child("PomodoroTime").get().then((props) => {
+        //     if (props.exists()) {
+        //             workTime= props.val().workTime;
+        //             workIteration = props.val().workIteration;
+        //             counter = props.val().counter;
+        //     } else {
+        //         console.log("Error! No data available");
+        //     }
+        // }).catch((error) => {
+        //     console.error(error);
+        // });
+
+        // const dbRef = firebase.database().ref();
+        // return new Promise(function (resolve) {
+           
+
+        //             dbRef.child("PomodoroTime").get().then((props) => {
+        //                 if (props.exists()) {
+        //                     resolve({
+        //                         workTime = props.val().workTime,
+        //             workIteration = props.val().workIteration,
+        //             counter = props.val().counter,
+        //                      })
+                           
+        //                 }
+        //             })
+
+               
+        // })
+        return new Promise(function (resolve) {
+            firebase.database().ref('PomodoroTime')
+                .once('value')
+                .then(function (snapshot) {
+                    resolve(snapshot.val())
+                }).catch(err => console.log(err));
+        })
+    }
+
     setUserIterationData(item) {
         // firebase.database().ref('userIteration').set({
         //     userIteration: item,

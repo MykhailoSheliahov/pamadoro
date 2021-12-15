@@ -6,6 +6,7 @@ import { settingsApi } from './settings';
 
 document.querySelector("#root").innerHTML = template(settingsApi);
 
+
 // document.addEventListener("DOMContentLoaded", function () {
     // const workTimeElInput = document.querySelector('.work-time');
     // const workIterationElInput = document.querySelector('.work-iteration');

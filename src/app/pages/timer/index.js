@@ -22,11 +22,20 @@ async function getDbSettings() {
     return getDbTasks;
 }
 
+async function getDbPomodoroTime() {
+    const getDbTasks = await db.getPomodoroTime();
+
+    return getDbTasks;
+}
+
+
+
 (async function () {
     const dbTaskList = await getDbTasksList();
     const dbSettings = await getDbSettings();
+    const dbPomodorTime = await getDbPomodoroTime();
 
-    if (dbTaskList && dbSettings) {
+    if (dbTaskList && dbSettings && dbPomodorTime) {
         // console.log(dbTaskList);
         // const activeTask = dbTaskList.items.find(item => item.status.ACTIVE === true);
         // const taskColor = [
@@ -41,6 +50,6 @@ async function getDbSettings() {
         // console.log(color)
 
         // document.querySelector('.time-circle').style.borderColor = color.color;
-        const app = new Controller(new Model(dbTaskList, dbSettings), new View());
+        const app = new Controller(new Model(dbTaskList, dbSettings,dbPomodorTime), new View());
     }
 })()

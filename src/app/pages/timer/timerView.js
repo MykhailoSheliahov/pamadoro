@@ -540,7 +540,7 @@ export class View {
             this.finishTask.classList.add('v-hidden');
             this.pauseTask.classList.add('hidden');
             this.resumeTask.classList.add('hidden');
-
+            console.log('time for work', 100);
             handler();
         });
     }

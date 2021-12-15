@@ -69,6 +69,7 @@ Router.config({ mode: 'history' });
 const isNewUser = sessionStorage.getItem('isNewUser');
 
 if (isNewUser) {
+    localStorage.setItem('PomodoroTime', '0');
     Router
     .add('/settings', () => {
 

@@ -7,8 +7,22 @@ import { v4 as uuidv4 } from 'uuid';
 
 export class Model {
 
-    constructor(a) {
-        this.tasksList = a
+    constructor(a,dbPomodorTime) {
+        this.tasksList = a;
+        // alert(dbPomodorTime);
+        if(dbPomodorTime.workIteration == '2'){
+            // document.querySelector('.global-list__btn').innerHTML = +dbPomodorTime.workTime / 2;
+
+            const alertOk = document.querySelector('.alert-msg-ok');
+            alertOk.classList.remove('hidden');
+            document.querySelector('.alert-msg-ok .alert-msg__text')
+                .textContent = `Your ideal time for task is - ${+dbPomodorTime.workTime / 2} minutes`;
+
+            setTimeout(()=>{
+                alertOk.classList.add('hidden');
+            },4000)
+
+        }
         // this.tasksList = db.getAllData() || [],
         // this.items = a,
         // console.log('1111', this.tasksList);

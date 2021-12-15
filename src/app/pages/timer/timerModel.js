@@ -2,11 +2,12 @@ const { db } = require("../../db");
 
 export class Model {
 
-    constructor(dbTaskList, dbSettings) {
+    constructor(dbTaskList, dbSettings,dbPomodorTime) {
         this.failedPomodora = 0;
         this.finishedPomodora = 0;
         this.tasksList = dbTaskList.items;
         this.tasksSettings = dbSettings;
+        this.dbPomodorTime = dbPomodorTime;
 
         const activeTask = this.tasksList.find(item => item.status.ACTIVE === true);
         this.activeTask = activeTask;
@@ -43,6 +44,7 @@ export class Model {
 
     finishPomodora(task) {
         this.finishedPomodora += task;
+       
     }
 
     finishTask(task) {
@@ -66,5 +68,36 @@ export class Model {
         }
 
         db.updateTask(this.activeTask);
+
+
+        // let pomodoroTime = +localStorage.getItem('PomodoroTime');
+        // pomodoroTime += +this.tasksSettings.workTime;
+        // localStorage.setItem('PomodoroTime',pomodoroTime);
+        // db.setPomodoroTime(25,1,0);
+
+        if(this.dbPomodorTime.workIteration == '0'){
+            this.dbPomodorTime.workIteration++;
+            this.dbPomodorTime.workTime = 0 + +this.tasksSettings.workTime;
+            localStorage.setItem("PomodoroTime", this.dbPomodorTime.workTime);
+            db.setPomodoroTime(this.tasksSettings.workTime,this.dbPomodorTime.workIteration,this.tasksSettings.workTime);
+        }
+        else if(this.dbPomodorTime.workIteration == '2'){
+
+            this.dbPomodorTime.workIteration = '0';
+            this.dbPomodorTime.workTime =  +this.tasksSettings.workTime;
+           localStorage.setItem("PomodoroTime", this.dbPomodorTime.workTime);
+
+            db.setPomodoroTime( this.dbPomodorTime.workTime,this.dbPomodorTime.workIteration,this.tasksSettings.workTime);
+
+
+        }else{
+            this.dbPomodorTime.workIteration++;
+            this.dbPomodorTime.workTime = +this.dbPomodorTime.workTime + +this.tasksSettings.workTime;
+            localStorage.setItem("PomodoroTime", this.dbPomodorTime.workTime);
+            db.setPomodoroTime( this.dbPomodorTime.workTime,this.dbPomodorTime.workIteration,this.tasksSettings.workTime);
+
+            }
+       
+
     }
 }
